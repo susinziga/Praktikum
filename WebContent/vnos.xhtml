@@ -54,6 +54,8 @@
 							<h:inputText id="naslovnica" class="form-control" value="#{Zrno.knjigaDao.knjiga.naslovnica}"   requiredMessage="*" /><br/><br/>
 							<div style="text-align: center;">
 								<h:commandButton class="btn btn-default" style="display: inline-block;" value="Dodaj" actionListener="#{Zrno.dodajKnjigo}" />
+									<h:commandButton class="btn btn-default middleBtn" style="display: inline-block;" value="Izbrisi" actionListener="#{Zrno.izbrisiKnjigo}" />
+								<h:commandButton class="btn btn-default" style="display: inline-block;" value="Spremeni" actionListener="#{Zrno.spremeniKnjigo}" />
 							</div>		
 							
 						</h:form>

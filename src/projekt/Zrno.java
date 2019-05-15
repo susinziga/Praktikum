@@ -27,6 +27,13 @@ public class Zrno implements Serializable  {
 		knjigaDao.addBook();
 		refreshImenaKnjig();
 	}
+	public void izbrisiKnjigo() {
+		knjigaDao.deleteKnjiga(knjigaInput);
+	}
+	
+	public void spremeniKnjigo() {
+		knjigaDao.updateKnjiga(knjigaInput);
+	}
 
 	public KnjigaDao getKnjigaDao() {
 		return knjigaDao;

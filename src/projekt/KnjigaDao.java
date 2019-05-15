@@ -30,13 +30,27 @@ public class KnjigaDao {
 	public void setKnjiga(Knjiga knjiga) {
 		this.knjiga = knjiga;
 	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Knjiga> getKnjige() {
 		return em.createQuery("SELECT k FROM Knjiga k").getResultList();
 	}
+	
 	public void deleteKnjiga(String value) {
 		System.out.println("Brišem "+knjiga+".");
-		em.createQuery("DELETE FROM Knjiga k WHERE k.id="+value+"").executeUpdate();
+		int id = findKnjigaId(value);
+		em.createQuery("DELETE FROM Knjiga k WHERE k.id="+id+"").executeUpdate();
+	}
+	
+	public void updateKnjiga(String value) {
+		System.out.println("Spremenjam "+knjiga+".");
+		int id = findKnjigaId(value);
+			em.createQuery("UPDATE Knjiga k SET "
+				+ "k.naslov ='"+knjiga.getNaslov()+"', "
+				+ "k.avtor ='"+knjiga.getAvtor()+"', "
+				+ "k.vrsta ='"+knjiga.getVrsta()+"', "
+				+ "k.naslovnica ='"+knjiga.getNaslovnica()+"'"
+				+ " WHERE k.id ='"+id+"'").executeUpdate();
 	}
 	
 	public void izberiKnjigo(String knjigaInput){
