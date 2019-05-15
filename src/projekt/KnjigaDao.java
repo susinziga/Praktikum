@@ -1,0 +1,38 @@
+package projekt;
+
+import java.util.List;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+@Stateless
+@LocalBean
+public class KnjigaDao {
+	
+	@PersistenceContext(unitName="Praktikum")
+	private Knjiga knjiga = new Knjiga();
+	
+	private EntityManager em;
+
+	public void addBook() {
+		System.out.println("Dodajam "+knjiga+".");
+		em.persist(knjiga);
+		knjiga = new Knjiga();
+	}
+	
+	public Knjiga getKnjiga() {
+		return knjiga;
+	}
+
+	public void setKnjiga(Knjiga knjiga) {
+		this.knjiga = knjiga;
+	}
+	@SuppressWarnings("unchecked")
+	public List<Knjiga> getKnjige() {
+		return em.createQuery("SELECT k FROM Knjiga k").getResultList();
+	}
+	
+	
+}
