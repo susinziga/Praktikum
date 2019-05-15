@@ -11,9 +11,10 @@ import javax.persistence.PersistenceContext;
 @LocalBean
 public class KnjigaDao {
 	
-	@PersistenceContext(unitName="Praktikum")
+
 	private Knjiga knjiga = new Knjiga();
 	
+	@PersistenceContext(unitName="Praktikum")
 	private EntityManager em;
 
 	public void addBook() {

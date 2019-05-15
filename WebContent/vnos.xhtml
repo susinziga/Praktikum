@@ -32,15 +32,16 @@
 					
 					<a href="vnos.xhtml">Dodajanje</a> | <a href="">Placeholder</a><br/><br/>
 						<h:form id="VnosForm">
-							Ime:<br/>
+							Naslov:<br/>
 							<h:message for="naslov" errorClass="red"/>
 							<h:inputText id="naslov" class="form-control" value="#{Zrno.knjigaDao.knjiga.naslov}"   requiredMessage="*" >
 							</h:inputText><br/>
-							Priimek:<br/>
-							<h:message for="priimek" errorClass="red"/>
-							<h:inputText id="priimek" class="form-control" value="#{Zrno.knjigaDao.knjiga.avtor}"   requiredMessage="*" /><br/>
-							Email:<br/>
-							<h:message for="email" errorClass="red"/><br/>
+							Avtor:<br/>
+							<h:message for="avtor" errorClass="red"/>
+							<h:inputText id="avtor" class="form-control" value="#{Zrno.knjigaDao.knjiga.avtor}"   requiredMessage="*" /><br/><br/>
+							Žanr:<br/>
+							<h:message for="vrsta" errorClass="red"/>
+							<h:inputText id="vrsta" class="form-control" value="#{Zrno.knjigaDao.knjiga.vrsta}"   requiredMessage="*" /><br/><br/>
 							<div style="text-align: center;">
 								<h:commandButton class="btn btn-default" style="display: inline-block;" value="Dodaj" actionListener="#{Zrno.dodajKnjigo}" />
 							</div>		
