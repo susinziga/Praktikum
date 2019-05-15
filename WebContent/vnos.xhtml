@@ -38,10 +38,13 @@
 							</h:inputText><br/>
 							Avtor:<br/>
 							<h:message for="avtor" errorClass="red"/>
-							<h:inputText id="avtor" class="form-control" value="#{Zrno.knjigaDao.knjiga.avtor}"   requiredMessage="*" /><br/><br/>
-							Žanr:<br/>
+							<h:inputText id="avtor" class="form-control" value="#{Zrno.knjigaDao.knjiga.avtor}"   requiredMessage="*" /><br/>
+							Žanr:
 							<h:message for="vrsta" errorClass="red"/>
-							<h:inputText id="vrsta" class="form-control" value="#{Zrno.knjigaDao.knjiga.vrsta}"   requiredMessage="*" /><br/><br/>
+							<h:inputText id="vrsta" class="form-control" value="#{Zrno.knjigaDao.knjiga.vrsta}"   requiredMessage="*" /><br/>
+							Naslovnica:
+							<h:message for="naslovnica" errorClass="red"/>
+							<h:inputText id="naslovnica" class="form-control" value="#{Zrno.knjigaDao.knjiga.naslovnica}"   requiredMessage="*" /><br/><br/>
 							<div style="text-align: center;">
 								<h:commandButton class="btn btn-default" style="display: inline-block;" value="Dodaj" actionListener="#{Zrno.dodajKnjigo}" />
 							</div>		
@@ -52,7 +55,32 @@
 			</div>
 			<div class="col-sm-6 text-left"><br/>
 				<div class="well">
-	  			
+	  			<h:dataTable value="#{Zrno.knjigaDao.getKnjige()}" var="book" border="1" styleClass="table table-bordered">
+						<h:column>
+							<f:facet name="header">Naslov</f:facet>
+							<h:outputText value="#{book.naslov}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Avtor</f:facet>
+							<h:outputText value="#{book.avtor}" ></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Žanr</f:facet>
+							<h:outputText value="#{book.vrsta}" ></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Naslovnica</f:facet>
+							<h:outputText value="#{book.naslovnica}" ></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">QR koda</f:facet>
+							<h:outputText value="#{book.qrKoda}" ></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header"></f:facet>
+							<h:outputText><button></button></h:outputText>
+						</h:column>
+					</h:dataTable>
 				</div>
 			</div>
 			<div class="col-sm-1 sidenav">

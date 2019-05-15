@@ -23,17 +23,19 @@ public class Knjiga implements Serializable {
 	private String naslov;
 	private String avtor;
 	private String vrsta;
+	private String naslovnica;
 	private int qrKoda;
 	
 	public Knjiga() {
-		this("", "", "", 0);
+		this("", "", "", "", 0);
 	}
 	
-	public Knjiga(String naslov, String avtor, String vrsta, int qrKoda) {
+	public Knjiga(String naslov, String avtor, String vrsta, String naslovnica, int qrKoda) {
 		super();
 		this.naslov = naslov;
 		this.avtor = avtor;
 		this.vrsta = vrsta;
+		this.naslovnica = naslovnica;
 		this.qrKoda = qrKoda;
 	}
 	
@@ -70,6 +72,14 @@ public class Knjiga implements Serializable {
 
 	public void setVrsta(String vrsta) {
 		this.vrsta = vrsta;
+	}
+
+	public String getNaslovnica() {
+		return naslovnica;
+	}
+
+	public void setNaslovnica(String naslovnica) {
+		this.naslovnica = naslovnica;
 	}
 
 	public int getQrKoda() {
