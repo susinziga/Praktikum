@@ -28,10 +28,17 @@
 			</div>
 			<div class="col-sm-4 text-left"><br/>
 				<div class="well">
-					<h1>Dodajanje</h1>
+					<h1>Dodajanje knjig</h1>
 					
-					<a href="vnos.xhtml">Dodajanje</a> | <a href="">Placeholder</a><br/><br/>
+					<a href="vnos.xhtml">Knjige</a> | <a href="">Knjigomati</a><br/><br/>
 						<h:form id="VnosForm">
+							Knjiga:
+							<h:selectOneMenu id="izbranaKnjiga" class="form-control" value="#{Zrno.knjigaInput}" requiredMessage="*" >
+								<p:ajax event="change" listener="#{Zrno.izberiKnjigo}" update="VnosForm" />
+								<f:selectItem itemValue="nov" itemLabel="- Nova knjiga -"/>
+							    <f:selectItems value="#{Zrno.imenaKnjig}" />
+							    <h:message for="izbranaKnjiga" errorClass="red"></h:message>
+							</h:selectOneMenu><br/>
 							Naslov:<br/>
 							<h:message for="naslov" errorClass="red"/>
 							<h:inputText id="naslov" class="form-control" value="#{Zrno.knjigaDao.knjiga.naslov}"   requiredMessage="*" >
@@ -75,10 +82,6 @@
 						<h:column>
 							<f:facet name="header">QR koda</f:facet>
 							<h:outputText value="#{book.qrKoda}" ></h:outputText>
-						</h:column>
-						<h:column>
-							<f:facet name="header"></f:facet>
-							<h:outputText><button></button></h:outputText>
 						</h:column>
 					</h:dataTable>
 				</div>
