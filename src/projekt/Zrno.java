@@ -42,7 +42,7 @@ public class Zrno implements Serializable  {
 		prikaz = new ArrayList<Knjiga>();
 		new ArrayList<Integer>();
 		System.out.println("Not");
-		prikazIndex=IskanjeDela.isci(knjigaDao.getKnjige(),"Knjiga","naslov");
+		prikazIndex=IskanjeDela.isci(knjigaDao.getKnjige(),isci,cat);
 	for (Integer i: prikazIndex) {
 		System.out.println("IDJI: " +i);
 		Knjiga vmesnaKnj=  knjigaDao.getKnjigaId(i).get(0);

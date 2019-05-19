@@ -15,17 +15,17 @@ public class IskanjeDela {
 		
 		for(Knjiga k:knjige) {
 			if(cat.equals("naslov")) {
-				if(k.getNaslov().contains(iscem)){
+				if(k.getNaslov().toLowerCase().contains(iscem.toLowerCase())){
 					koncna.add(k.getId());
 				}
 			}
 			else if(cat.equals("avtor")) {
-				if(k.getAvtor().contains(iscem)){
+				if(k.getAvtor().toLowerCase().contains(iscem.toLowerCase())){
 					koncna.add(k.getId());
 				}
 			}
 			if(cat.equals("vrsta")) {
-				if(k.getVrsta().contains(iscem)){
+				if(k.getVrsta().toLowerCase().contains(iscem.toLowerCase())){
 					koncna.add(k.getId());
 				}
 			}
