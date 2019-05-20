@@ -31,7 +31,7 @@
 					<h1>Dodajanje knjig</h1>
 					
 					<a href="vnos.xhtml">Knjige</a> | <a href="">Knjigomati</a><br/><br/>
-						<h:form id="VnosForm">
+						<h:form id="VnosForm" enctype="multipart/form-data">
 							Knjiga:
 							<h:selectOneMenu id="izbranaKnjiga" class="form-control" value="#{Zrno.knjigaInput}" requiredMessage="*" >
 								<p:ajax event="change" listener="#{Zrno.izberiKnjigo}" update="VnosForm" />
@@ -51,7 +51,7 @@
 							<h:inputText id="vrsta" class="form-control" value="#{Zrno.knjigaDao.knjiga.vrsta}"   requiredMessage="*" /><br/>
 							Naslovnica:
 							<h:message for="naslovnica" errorClass="red"/>
-							<h:inputText id="naslovnica" class="form-control" value="#{Zrno.knjigaDao.knjiga.naslovnica}"   requiredMessage="*" /><br/><br/>
+							<h:inputFile name="naslovnica" class="form-control" value="#{Zrno.uploadedFile}"   requiredMessage="*" /><br/><br/>
 							<div style="text-align: center;">
 								<h:commandButton class="btn btn-default" style="display: inline-block;" value="Dodaj" actionListener="#{Zrno.dodajKnjigo}" />
 									<h:commandButton class="btn btn-default middleBtn" style="display: inline-block;" value="Izbrisi" actionListener="#{Zrno.izbrisiKnjigo}" />
@@ -79,12 +79,13 @@
 						</h:column>
 						<h:column>
 							<f:facet name="header">Naslovnica</f:facet>
-							<h:outputText value="#{book.naslovnica}" ></h:outputText>
+							<h:graphicImage url="#{book.naslovnica}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">QR koda</f:facet>
 							<h:outputText value="#{book.qrKoda}" ></h:outputText>
 						</h:column>
+						
 					</h:dataTable>
 				</div>
 			</div>

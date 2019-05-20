@@ -23,14 +23,14 @@ public class Knjiga implements Serializable {
 	private String avtor;
 	private String vrsta;
 	private String naslovnica;
-	private int qrKoda;
+	private String qrKoda;
 	
 	
 	public Knjiga() {
-		this("", "", "", "", 0);
+		this("", "", "", "","");
 	}
 	
-	public Knjiga(String naslov, String avtor, String vrsta, String naslovnica, int qrKoda) {
+	public Knjiga(String naslov, String avtor, String vrsta, String naslovnica, String qrKoda) {
 		super();
 		this.naslov = naslov;
 		this.avtor = avtor;
@@ -82,11 +82,11 @@ public class Knjiga implements Serializable {
 		this.naslovnica = naslovnica;
 	}
 
-	public int getQrKoda() {
+	public String getQrKoda() {
 		return qrKoda;
 	}
 
-	public void setQrKoda(int qrKoda) {
+	public void setQrKoda(String qrKoda) {
 		this.qrKoda = qrKoda;
 	}
 	@Override
