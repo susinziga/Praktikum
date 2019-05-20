@@ -2,10 +2,9 @@ package projekt;
 
 import java.io.IOException;
 import java.io.Serializable;
-<<<<<<< HEAD
+
 import java.text.ParseException;
-=======
->>>>>>> c77c6f284e5f77c6c643b28f7a6dedcbfdbd9bb1
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +68,6 @@ public class Zrno implements Serializable  {
 		this.knjigaDao = knjigaDao;
 	}
 
-<<<<<<< HEAD
 	public String getCat() {
 		return cat;
 	}
@@ -102,7 +100,7 @@ public class Zrno implements Serializable  {
 		this.prikaz = prikaz;
 	}
 
-=======
+
 	public List<String> getImenaKnjig() {
 		return imenaKnjig;
 	}
@@ -128,6 +126,6 @@ public class Zrno implements Serializable  {
 	public void izberiKnjigo() {
 		knjigaDao.izberiKnjigo(knjigaInput);
 	}
->>>>>>> c77c6f284e5f77c6c643b28f7a6dedcbfdbd9bb1
+
 	
 }
