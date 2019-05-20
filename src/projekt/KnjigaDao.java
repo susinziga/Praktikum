@@ -17,7 +17,8 @@ public class KnjigaDao {
 	@PersistenceContext(unitName="Praktikum")
 	private EntityManager em;
 
-	public void addBook() {
+	public void addBook(String path) {
+		knjiga.setNaslovnica(path);
 		System.out.println("Dodajam "+knjiga+".");
 		em.persist(knjiga);
 		knjiga = new Knjiga();

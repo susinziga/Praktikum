@@ -6,10 +6,18 @@
 		<jta-data-source>java:/PraktikumDS</jta-data-source>
 		<class>projekt.Knjiga</class>
 		<class>projekt.Knjigomat</class>
+		<class>projekt.Uporabnik</class>
+		<class>projekt.Narocilo</class>
+		<class>projekt.Izposoja</class>
+	
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
-		
+			
 			<property name="hibernate.show_sql" value="false" />
+			
+			
+            <property name="javax.persistence.sql-load-script-source" value="META-INF/create.sql" />
+            
 		</properties>
 	</persistence-unit>
 </persistence>

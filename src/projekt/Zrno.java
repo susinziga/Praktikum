@@ -1,9 +1,13 @@
 package projekt;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
-
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.text.ParseException;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +15,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-
+import javax.servlet.http.Part;
 
 import iskanje.IskanjeDela;
 
@@ -23,7 +27,8 @@ public class Zrno implements Serializable  {
 	 * 
 	 */
 	private static final long serialVersionUID = -3108130695607179483L;
-	
+	private Part uploadedFile;
+	private String folder = "C:\\FERI\\2.letnik\\Praktikum\\slike";
 	private String knjigaInput;
 	private List<String> imenaKnjig;
 	
@@ -35,7 +40,9 @@ public class Zrno implements Serializable  {
 	private List<Knjiga>prikaz = new ArrayList<Knjiga>();
 	
 	public void dodajKnjigo() {
-		knjigaDao.addBook();
+		String path=saveFile();
+		
+		knjigaDao.addBook(path);
 		refreshImenaKnjig();
 	}
 	public void izbrisiKnjigo() {
@@ -48,6 +55,31 @@ public class Zrno implements Serializable  {
 
 	public KnjigaDao getKnjigaDao() {
 		return knjigaDao;
+	}
+	
+	
+	public String saveFile(){
+		 String fileName="";
+		for(String cd:uploadedFile.getHeader("content-disposition").split(";")) {
+			if(cd.trim().startsWith("filename")) {
+				fileName=cd.substring(cd.indexOf('=')+1).trim();
+			}
+			
+		}
+		System.out.print(fileName);
+		fileName=fileName.substring(1,fileName.length()-1);
+		 try (InputStream input =  uploadedFile.getInputStream()) {
+			 
+		
+		
+			 	System.out.println("dela tu");
+		         Files.copy(input, new File(folder, fileName).toPath());
+		     }
+		     catch (IOException e) {
+		         e.printStackTrace();
+		     }
+		 
+		 return folder+"\\"+fileName;
 	}
 	
 	/*Iskanje*/
@@ -125,6 +157,18 @@ public class Zrno implements Serializable  {
 	}
 	public void izberiKnjigo() {
 		knjigaDao.izberiKnjigo(knjigaInput);
+	}
+	public Part getUploadedFile() {
+		return uploadedFile;
+	}
+	public void setUploadedFile(Part uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
+	public String getFolder() {
+		return folder;
+	}
+	public void setFolder(String folder) {
+		this.folder = folder;
 	}
 
 	
