@@ -17,4 +17,5 @@ c) Uporabnika dodamo v AddUser.bat v datoteki strežnika Wildfly
 - Rezervacija knjig,
 - Izposoja knjig na knjigomatu,
 - Pregled knjig v knjigomatu,
-- Vračanje knjig
+- Vračanje knjig v knjigomat,
+- Naročanje knjig za prevzem na knjigomatu
