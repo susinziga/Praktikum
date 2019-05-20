@@ -5,6 +5,7 @@
 	<persistence-unit name="Praktikum">
 		<jta-data-source>java:/PraktikumDS</jta-data-source>
 		<class>projekt.Knjiga</class>
+		<class>projekt.Knjigomat</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 		

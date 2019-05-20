@@ -25,6 +25,7 @@ public class Knjiga implements Serializable {
 	private String naslovnica;
 	private int qrKoda;
 	
+	
 	public Knjiga() {
 		this("", "", "", "", 0);
 	}
