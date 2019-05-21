@@ -41,4 +41,10 @@ public class KnjigomatEJB implements IKnjigomatEJB{
 		
 	}
 
+	@Override
+	public void brisi(Knjigomat k) {
+		em.remove(em.contains(k) ? k : em.merge(k));
+		
+	}
+
 }

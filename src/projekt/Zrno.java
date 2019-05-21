@@ -17,6 +17,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 
+import EJB.IKnjigomatEJB;
 import iskanje.IskanjeDela;
 
 @Named("Zrno")
@@ -32,8 +33,15 @@ public class Zrno implements Serializable  {
 	private String knjigaInput;
 	private List<String> imenaKnjig;
 	
+	private Knjigomat kn= new Knjigomat();
+	
+	
 	@EJB
 	KnjigaDao knjigaDao;
+	
+	@EJB
+	IKnjigomatEJB knjigomat;
+	
 	private String cat=null;
 	private String isci=null;
 	private List<Integer>prikazIndex = new ArrayList<Integer>();
@@ -53,6 +61,31 @@ public class Zrno implements Serializable  {
 		knjigaDao.updateKnjiga(knjigaInput);
 	}
 
+	/*Dodajnaje knjigomatov*/
+	public void dodajKnjigomat() {
+		knjigomat.dodajKnjikomat(kn);
+		kn= new Knjigomat();
+	}
+	
+	
+	public Knjigomat getKn() {
+		return kn;
+	}
+	public void setKn(Knjigomat kn) {
+		this.kn = kn;
+	}
+	public IKnjigomatEJB getKnjigomat() {
+		return knjigomat;
+	}
+	public void setKnjigomat(IKnjigomatEJB knjigomat) {
+		this.knjigomat = knjigomat;
+	}
+	/*Brisanje knjigomatov*/
+	public void izbrisiKnjigomat(int id) {
+		Knjigomat brisi = knjigomat.najd(id);
+		knjigomat.brisi(brisi);
+	}
+	
 	public KnjigaDao getKnjigaDao() {
 		return knjigaDao;
 	}

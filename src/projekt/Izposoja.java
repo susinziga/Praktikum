@@ -21,7 +21,7 @@ public class Izposoja {
 	public boolean stanje;
 	public Date datumOd;
 	public Date datumDo;
-	public Naroèilo narocilo;
+	public NaroÄilo narocilo;
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -52,10 +52,10 @@ public class Izposoja {
 	}
 	
 	@OneToOne
-	public Naroèilo getNarocilo() {
+	public NaroÄilo getNarocilo() {
 		return narocilo;
 	}
-	public void setNarocilo(Naroèilo narocilo) {
+	public void setNarocilo(NaroÄilo narocilo) {
 		this.narocilo = narocilo;
 	}
 	

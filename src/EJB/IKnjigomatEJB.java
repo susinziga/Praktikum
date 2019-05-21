@@ -12,4 +12,5 @@ public interface IKnjigomatEJB {
 	List<Knjigomat> vrniVse();
 	Knjigomat najd(int id);
 	void update(Knjigomat k);
+	void brisi (Knjigomat k);
 }

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	
+	<h:head>
+		<meta charset="UTF-8" />
+		<title>Knjižnica</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
+		<style>
+		html,body{height:100%; background-image:linear-gradient(to left bottom, rgb(255, 19, 19), rgb(255, 255, 47))}
+		.red{color:red}
+		.middleBtn{
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+		</style>
+	</h:head>
+	
+	<body>
+	  
+		<div class="container-fluid text-center">
+			<div class="col-sm-1 sidenav">
+			</div>
+			<div class="col-sm-4 text-left"><br/>
+				<div class="well">
+					<h1>Dodajanje knjigomatov</h1>
+					
+					<a href="vnos.xhtml">Knjige</a> | <a href="">Knjigomati</a><br/><br/>
+						<h:form id="VnosForm">
+												
+							Ime knjigomata:<br/>
+							<h:message for="naslov" errorClass="red"/>
+							<h:inputText id="naslov" class="form-control" value="#{Zrno.kn.ime}"   requiredMessage="*" >
+							</h:inputText><br/>
+							Lokacija:<br/>
+							<h:message for="avtor" errorClass="red"/>
+							<h:inputText id="avtor" class="form-control" value="#{Zrno.kn.lokacija}"   requiredMessage="*" /><br/>
+							Število prostih mest:
+							<h:message for="vrsta" errorClass="red"/>
+							<h:inputText id="vrsta" class="form-control" value="#{Zrno.kn.prostor}"   requiredMessage="*" /><br/>
+							
+							<div style="text-align: center;">
+								<h:commandButton class="btn btn-default" style="display: inline-block;" value="Dodaj" actionListener="#{Zrno.dodajKnjigomat}" />
+									
+							</div>		
+							
+						</h:form>
+					
+				</div>
+			</div>
+			<div class="col-sm-6 text-left"><br/>
+				<div class="well">
+	  			<f:view>
+						<h:form >
+	  			<h:dataTable value="#{Zrno.knjigomat.vrniVse()}" var="book" border="1" styleClass="table table-bordered">
+						
+						<h:column>
+							<f:facet name="header">ID Knjigomata</f:facet>
+							<h:outputText value="#{book.id}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Ime</f:facet>
+							<h:outputText value="#{book.ime}" ></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Lokacija</f:facet>
+							<h:outputText value="#{book.lokacija}" ></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Število prostih mest</f:facet>
+							<h:outputText value="#{book.prostor}" ></h:outputText>
+						</h:column>
+						
+						<h:column>
+						
+						<h:commandButton class="btn btn-success"  actionListener="#{Zrno.izbrisiKnjigomat(book.id)}" value="Brisi"/>
+						
+							
+							
+						</h:column>
+						
+						
+					</h:dataTable>
+					</h:form>
+						</f:view>
+				</div>
+			</div>
+			<div class="col-sm-1 sidenav">
+			</div>
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	</body>
+	
+</html>
