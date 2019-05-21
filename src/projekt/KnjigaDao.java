@@ -82,5 +82,9 @@ public class KnjigaDao {
 		return id;
 	}
 	
+public Knjiga najdId(int id) {
+		
+		return em.find(Knjiga.class, id);
+	}
 	
 }
