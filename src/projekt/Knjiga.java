@@ -91,7 +91,7 @@ public class Knjiga implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Kjiga [naslov=" + naslov + ", avtor=" + avtor + ", vrsta=" + vrsta+ "]";
+		return "Knjiga [naslov=" + naslov + ", avtor=" + avtor + ", vrsta=" + vrsta+ "]";
 	}
 	
 }
