@@ -24,6 +24,7 @@ public class Knjiga implements Serializable {
 	private String vrsta;
 	private String naslovnica;
 	private String qrKoda;
+	private boolean stanje;
 	
 	
 	public Knjiga() {
@@ -92,6 +93,14 @@ public class Knjiga implements Serializable {
 	@Override
 	public String toString() {
 		return "Knjiga [naslov=" + naslov + ", avtor=" + avtor + ", vrsta=" + vrsta+ "]";
+	}
+
+	public boolean isStanje() {
+		return stanje;
+	}
+
+	public void setStanje(boolean stanje) {
+		this.stanje = stanje;
 	}
 	
 }

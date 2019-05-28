@@ -17,7 +17,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 
-import EJB.IKnjigomatEJB;
+
+import EJB.KnjigomatEJB;
 import EJB.UporabnikEJB;
 import iskanje.IskanjeDela;
 
@@ -44,7 +45,7 @@ public class Zrno implements Serializable  {
 	UporabnikEJB upo;
 	
 	@EJB
-	IKnjigomatEJB knjigomat;
+	KnjigomatEJB knjigomat;
 	
 	private String cat=null;
 	private String isci=null;
@@ -111,14 +112,15 @@ public class Zrno implements Serializable  {
 	public void setKn(Knjigomat kn) {
 		this.kn = kn;
 	}
-	public IKnjigomatEJB getKnjigomat() {
+	
+	
+	
+	public KnjigomatEJB getKnjigomat() {
 		return knjigomat;
 	}
-	public void setKnjigomat(IKnjigomatEJB knjigomat) {
+	public void setKnjigomat(KnjigomatEJB knjigomat) {
 		this.knjigomat = knjigomat;
 	}
-	
-	
 	public KnjigaDao getKnjigaDao() {
 		return knjigaDao;
 	}

@@ -1,5 +1,8 @@
 package rest;
 
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -16,9 +19,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import EJB.IKnjigomatEJB;
-import EJB.KnjigomatEJB;
 
+import EJB.KnjigomatEJB;
+import projekt.Knjiga;
 import projekt.Knjigomat;
 
 
@@ -28,7 +31,7 @@ import projekt.Knjigomat;
 public class KnjigomatRest {
 	
 	@EJB
-	private IKnjigomatEJB ejb;
+	private KnjigomatEJB ejb;
 
 	@Context
     private UriInfo context;
@@ -39,13 +42,20 @@ public class KnjigomatRest {
 	}
 
 	/*Omogocen GET knjiga*/	
-	@GET
+	@POST
 	@Path("/vsi/")
-	public Response vrniKnjigo() {
+	@Produces("application/json")
+	public Response iskanjeKnjige() throws IOException, ParseException {
+		List <Knjigomat> najdene = ejb.vrniVse();
+		List <String> vrni =new ArrayList<String>();
+		for (Knjigomat k:najdene) {
+			vrni.add(k.getLokacija());
+		}
+	
 		
-		List<Knjigomat> vsi = ejb.vrniVse();
-		if (vsi != null) {
-			return Response.ok(vsi).build();
+		
+		if (najdene.size() > 0) {
+			return Response.ok(vrni).build();
 		} else {
 			return Response.status(403).entity("KnjigeNiMogoceNajtiException").build();
 		}

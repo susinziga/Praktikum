@@ -20,13 +20,13 @@ public class Narocilo {
 
 	
 	public int id;
-	public String qrNarocilo;
 	public Date datumOd;
 	public Date datumDo;
-	public boolean stanje;
 	public Uporabnik uporabnik;
 	public Knjigomat knjigomat;
-	public List<Knjiga> knjigeNarocilo=new ArrayList<Knjiga>();
+	public Knjiga knjiga;
+	
+	
 	
 	
 	@Id
@@ -38,12 +38,7 @@ public class Narocilo {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getQrNarocilo() {
-		return qrNarocilo;
-	}
-	public void setQrNarocilo(String qrNarocilo) {
-		this.qrNarocilo = qrNarocilo;
-	}
+	
 	public Date getDatumOd() {
 		return datumOd;
 	}
@@ -56,12 +51,7 @@ public class Narocilo {
 	public void setDatumDo(Date datumDo) {
 		this.datumDo = datumDo;
 	}
-	public boolean isStanje() {
-		return stanje;
-	}
-	public void setStanje(boolean stanje) {
-		this.stanje = stanje;
-	}
+	
 	
 	@OneToOne
 	public Uporabnik getUporabnik() {
@@ -71,15 +61,14 @@ public class Narocilo {
 		this.uporabnik = uporabnik;
 	}
 	
-	@OneToMany
-	public List<Knjiga> getKnjigeNarocilo() {
-		return knjigeNarocilo;
-	}
 	
-	public void setKnjigeNarocilo(List<Knjiga> knjigeNarocilo) {
-		this.knjigeNarocilo = knjigeNarocilo;
+	@OneToOne
+	public Knjiga getKnjiga() {
+		return knjiga;
 	}
-	
+	public void setKnjiga(Knjiga knjiga) {
+		this.knjiga = knjiga;
+	}
 	@OneToOne
 	public Knjigomat getKnjigomat() {
 		return knjigomat;

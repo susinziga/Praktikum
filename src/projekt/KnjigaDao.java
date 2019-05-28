@@ -86,5 +86,8 @@ public Knjiga najdId(int id) {
 		
 		return em.find(Knjiga.class, id);
 	}
-	
+public void posodobi (Knjiga k) {
+	em.merge(k);
+}
+
 }
