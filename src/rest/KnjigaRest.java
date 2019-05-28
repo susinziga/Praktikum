@@ -42,7 +42,7 @@ public class KnjigaRest {
 		}
 
 		/*Omogocen GET knjiga*/	
-		@GET
+		/*@GET
 		@Path("/knjiga/{id}")
 		public Response vrniKnjigo(@PathParam("id") String idS) {
 			int id = Integer.parseInt(idS);
@@ -52,7 +52,7 @@ public class KnjigaRest {
 			} else {
 				return Response.status(403).entity("KnjigeNiMogoceNajtiException").build();
 			}
-		}
+		}*/
 		
 		/*Omogocen POST knjiga*/
 		@POST
@@ -70,14 +70,36 @@ public class KnjigaRest {
 		/* POST knjiga iskanje*/
 		@POST
 		@Path("/iskanje/{cat}&{iskanje}")
+		@Produces("application/json")
 		public Response iskanjeKnjige(@PathParam("cat") String cat,@PathParam("iskanje") String isci ) throws IOException, ParseException {
+			List <Knjiga> najdene = new ArrayList<Knjiga>();
+			
 			
 			List <Integer> najdeniID = IskanjeDela.isci(ejb.getKnjige(), isci, cat);
-			List <Knjiga> najdene = new ArrayList<Knjiga>();
+			
 			for (Integer i: najdeniID) {
 				Knjiga k = ejb.najdId(i);
 				najdene.add(k);
+			
 			}
+			
+			if (najdene.size() > 0) {
+				return Response.ok(najdene).build();
+			} else {
+				return Response.status(403).entity("KnjigeNiMogoceNajtiException").build();
+			}
+		}
+		
+		@POST
+		@Path("/iskanje/")
+		@Produces("application/json")
+		public Response iskanjeKnjige() throws IOException, ParseException {
+			List <Knjiga> najdene = ejb.getKnjige();
+			
+			
+		
+			
+			
 			if (najdene.size() > 0) {
 				return Response.ok(najdene).build();
 			} else {
