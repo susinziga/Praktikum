@@ -15,7 +15,6 @@ public class Uporabnik {
 	public String ime;
 	public String priimek;
 	public String qrUporabnik;
-	public String username;
 	public String password;
 	public String email;
 	
@@ -47,12 +46,7 @@ public class Uporabnik {
 	public void setQrUporabnik(String qrUporabnik) {
 		this.qrUporabnik = qrUporabnik;
 	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	
 	public String getPassword() {
 		return password;
 	}

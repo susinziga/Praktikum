@@ -18,6 +18,7 @@ import javax.inject.Named;
 import javax.servlet.http.Part;
 
 import EJB.IKnjigomatEJB;
+import EJB.UporabnikEJB;
 import iskanje.IskanjeDela;
 
 @Named("Zrno")
@@ -34,10 +35,13 @@ public class Zrno implements Serializable  {
 	private List<String> imenaKnjig;
 	
 	private Knjigomat kn= new Knjigomat();
-	
+	private Uporabnik up= new Uporabnik();
 	
 	@EJB
 	KnjigaDao knjigaDao;
+	
+	@EJB
+	UporabnikEJB upo;
 	
 	@EJB
 	IKnjigomatEJB knjigomat;
@@ -57,17 +61,50 @@ public class Zrno implements Serializable  {
 		knjigaDao.deleteKnjiga(knjigaInput);
 	}
 	
+	public Uporabnik getUp() {
+		return up;
+	}
+	public void setUp(Uporabnik up) {
+		this.up = up;
+	}
 	public void spremeniKnjigo() {
 		knjigaDao.updateKnjiga(knjigaInput);
 	}
-
+	/*Iskanje*/
+	public void isciBaza() throws IOException, ParseException {
+		prikaz = new ArrayList<Knjiga>();
+		new ArrayList<Integer>();
+		System.out.println("Not");
+		prikazIndex=IskanjeDela.isci(knjigaDao.getKnjige(),isci,cat);
+	for (Integer i: prikazIndex) {
+		System.out.println("IDJI: " +i);
+		Knjiga vmesnaKnj=  knjigaDao.getKnjigaId(i).get(0);
+		prikaz.add(vmesnaKnj);
+	}
+	}
+	
 	/*Dodajnaje knjigomatov*/
 	public void dodajKnjigomat() {
 		knjigomat.dodajKnjikomat(kn);
 		kn= new Knjigomat();
 	}
 	
-	
+	/*Dodajnaje uporabnika*/
+	public void dodajUporabnika() {
+		upo.dodajUporabnika(up);
+		up= new Uporabnik();
+	}
+	/*Brisanje knjigomatov*/
+	public void izbrisiKnjigomat(int id) {
+		Knjigomat brisi = knjigomat.najd(id);
+		knjigomat.brisi(brisi);
+	}
+	public UporabnikEJB getUpo() {
+		return upo;
+	}
+	public void setUpo(UporabnikEJB upo) {
+		this.upo = upo;
+	}
 	public Knjigomat getKn() {
 		return kn;
 	}
@@ -80,11 +117,7 @@ public class Zrno implements Serializable  {
 	public void setKnjigomat(IKnjigomatEJB knjigomat) {
 		this.knjigomat = knjigomat;
 	}
-	/*Brisanje knjigomatov*/
-	public void izbrisiKnjigomat(int id) {
-		Knjigomat brisi = knjigomat.najd(id);
-		knjigomat.brisi(brisi);
-	}
+	
 	
 	public KnjigaDao getKnjigaDao() {
 		return knjigaDao;
@@ -115,18 +148,7 @@ public class Zrno implements Serializable  {
 		 return folder+"\\"+fileName;
 	}
 	
-	/*Iskanje*/
-	public void isciBaza() throws IOException, ParseException {
-		prikaz = new ArrayList<Knjiga>();
-		new ArrayList<Integer>();
-		System.out.println("Not");
-		prikazIndex=IskanjeDela.isci(knjigaDao.getKnjige(),isci,cat);
-	for (Integer i: prikazIndex) {
-		System.out.println("IDJI: " +i);
-		Knjiga vmesnaKnj=  knjigaDao.getKnjigaId(i).get(0);
-		prikaz.add(vmesnaKnj);
-	}
-	}
+	
 	
 	
 	public void setKnjigaDao(KnjigaDao knjigaDao) {

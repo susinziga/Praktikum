@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	
+	<h:head>
+		<meta charset="UTF-8" />
+		<title>Knjižnica</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
+		<style>
+		html,body{height:100%; background-image:linear-gradient(to left bottom, rgb(255, 19, 19), rgb(255, 255, 47))}
+		.red{color:red}
+		.middleBtn{
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+		</style>
+	</h:head>
+	
+	<body>
+	  
+		<div class="container-fluid text-center">
+			<div class="col-sm-1 sidenav">
+			</div>
+			<div class="col-sm-4 text-left"><br/>
+				<div class="well">
+					<h1>Dodajanje uporabnikov</h1>
+					
+					<a href="vnos.xhtml">Knjige</a> | <a href="">Knjigomati</a><br/><br/>
+						<h:form id="VnosForm">
+												
+							Ime :<br/>
+							<h:message for="ime" errorClass="red"/>
+							<h:inputText id="ime" class="form-control" value="#{Zrno.upo.ime}"   requiredMessage="*" >
+							</h:inputText><br/>
+							Priimek:<br/>
+							<h:message for="priimek" errorClass="red"/>
+							<h:inputText id="priimek" class="form-control" value="#{Zrno.upo.priimek}"   requiredMessage="*" /><br/>
+							Geslo:
+							<h:message for="geslo" errorClass="red"/>
+							<h:inputText id="geslo" class="form-control" value="#{Zrno.upo.geslo}"   requiredMessage="*" /><br/>
+							e-mail:
+							<h:message for="email" errorClass="red"/>
+							<h:inputText id="email" class="form-control" value="#{Zrno.upo.email}"   requiredMessage="*" /><br/>
+							
+							<div style="text-align: center;">
+								<h:commandButton class="btn btn-default" style="display: inline-block;" value="Dodaj" actionListener="#{Zrno.dodajUporabnika}" />
+									
+							</div>		
+							
+						</h:form>
+					
+				</div>
+			</div>
+		
+			<div class="col-sm-1 sidenav">
+			</div>
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	</body>
+	
+</html>
