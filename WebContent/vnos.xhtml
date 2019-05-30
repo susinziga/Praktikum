@@ -30,7 +30,7 @@
 				<div class="well">
 					<h1>Dodajanje knjig</h1>
 					
-					<a href="vnos.xhtml">Knjige</a> | <a href="">Knjigomati</a><br/><br/>
+					<a href="admin.xhtml">Domov</a> <br/><br/>
 						<h:form id="VnosForm" enctype="multipart/form-data">
 							Knjiga:
 							<h:selectOneMenu id="izbranaKnjiga" class="form-control" value="#{Zrno.knjigaInput}" requiredMessage="*" >
@@ -65,9 +65,10 @@
 			<div class="col-sm-6 text-left"><br/>
 				<div class="well">
 	  			<h:dataTable value="#{Zrno.knjigaDao.getKnjige()}" var="book" border="1" styleClass="table table-bordered">
+	  					
 						<h:column>
 							<f:facet name="header">Naslov</f:facet>
-							<h:outputText value="#{book.naslov}"></h:outputText>
+							<h:outputText value="#{book.naslov}" ></h:outputText>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Avtor</f:facet>
@@ -79,7 +80,10 @@
 						</h:column>
 						<h:column>
 							<f:facet name="header">Naslovnica</f:facet>
-							<h:graphicImage url="#{book.naslovnica}" />
+							
+							
+							<h:graphicImage value="data:image/jpeg;base64, #{book.stringSlika()}" style="height:100px"/>
+
 						</h:column>
 						<h:column>
 							<f:facet name="header">QR koda</f:facet>

@@ -1,5 +1,6 @@
 package projekt;
 
+import java.util.Base64;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -10,19 +11,22 @@ import javax.persistence.PersistenceContext;
 @Stateless
 @Local
 public class KnjigaDao {
-	
 
-	private Knjiga knjiga = new Knjiga();
+
+	Knjiga knjiga = new Knjiga();
+
 	
 	@PersistenceContext(unitName="Praktikum")
 	private EntityManager em;
 
-	public void addBook(String path) {
-		knjiga.setNaslovnica(path);
+	public void addBook(byte[]slika) {
+		knjiga.setSlika(slika);
+		System.out.println(slika);
 		System.out.println("Dodajam "+knjiga+".");
 		em.persist(knjiga);
 		knjiga = new Knjiga();
 	}
+	
 	
 	public Knjiga getKnjiga() {
 		return knjiga;
@@ -40,6 +44,12 @@ public class KnjigaDao {
 		return em.createQuery("SELECT k FROM Knjiga k").getResultList();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public String getKnjigeSt() {
+		List<Knjiga>knj= em.createQuery("SELECT k FROM Knjiga k").getResultList();
+		return knj.size()+"";
+	}
+	
 	public void deleteKnjiga(String value) {
 		System.out.println("Brišem "+knjiga+".");
 		int id = findKnjigaId(value);
@@ -53,7 +63,7 @@ public class KnjigaDao {
 				+ "k.naslov ='"+knjiga.getNaslov()+"', "
 				+ "k.avtor ='"+knjiga.getAvtor()+"', "
 				+ "k.vrsta ='"+knjiga.getVrsta()+"', "
-				+ "k.naslovnica ='"+knjiga.getNaslovnica()+"'"
+				
 				+ " WHERE k.id ='"+id+"'").executeUpdate();
 	}
 	
@@ -89,5 +99,6 @@ public Knjiga najdId(int id) {
 public void posodobi (Knjiga k) {
 	em.merge(k);
 }
+
 
 }

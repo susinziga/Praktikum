@@ -1,16 +1,35 @@
 package projekt;
 
-import java.io.Serializable;
+import java.awt.Graphics2D;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.Iterator;
+
+import javax.ejb.Singleton;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReadParam;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.xml.bind.DatatypeConverter;
 
 @Entity
 @Table(name="Knjiga")
+@Singleton
 public class Knjiga implements Serializable {
 
 	/**
@@ -22,23 +41,42 @@ public class Knjiga implements Serializable {
 	private String naslov;
 	private String avtor;
 	private String vrsta;
-	private String naslovnica;
+	byte[]slika;
 	private String qrKoda;
 	private boolean stanje;
 	
 	
+	
+	
 	public Knjiga() {
-		this("", "", "", "","");
+		this("", "", "",null,"");
 	}
 	
-	public Knjiga(String naslov, String avtor, String vrsta, String naslovnica, String qrKoda) {
+	public Knjiga(String naslov, String avtor, String vrsta, byte[]slika, String qrKoda) {
 		super();
 		this.naslov = naslov;
 		this.avtor = avtor;
 		this.vrsta = vrsta;
-		this.naslovnica = naslovnica;
+		this.slika = slika;
 		this.qrKoda = qrKoda;
+		this.stanje=true;
+		
 	}
+	
+	public String stringSlika(){
+		
+		
+		byte[]b=slika;
+		String string="a";
+		System.out.println("slika");
+		
+		if (b==null) return "ni slike";
+		string=Base64.getEncoder().encodeToString(b);
+		System.out.println(string);
+		return string;
+	}
+	
+	
 	
    @Id
    @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -75,13 +113,7 @@ public class Knjiga implements Serializable {
 		this.vrsta = vrsta;
 	}
 
-	public String getNaslovnica() {
-		return naslovnica;
-	}
-
-	public void setNaslovnica(String naslovnica) {
-		this.naslovnica = naslovnica;
-	}
+	
 
 	public String getQrKoda() {
 		return qrKoda;
@@ -92,7 +124,7 @@ public class Knjiga implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Knjiga [naslov=" + naslov + ", avtor=" + avtor + ", vrsta=" + vrsta+ "]";
+		return "Knjiga [naslov=" + naslov + ", avtor=" + avtor + ", vrsta=" + vrsta+ ", blob="+slika.length+"]";
 	}
 
 	public boolean isStanje() {
@@ -102,5 +134,17 @@ public class Knjiga implements Serializable {
 	public void setStanje(boolean stanje) {
 		this.stanje = stanje;
 	}
+
+	@Lob
+	public byte[] getSlika() {
+		return slika;
+	}
+
+	public void setSlika(byte[] slika) {
+		this.slika = slika;
+	}
+	
+	
+
 	
 }

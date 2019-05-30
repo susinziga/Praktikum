@@ -1,0 +1,55 @@
+
+<html
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+
+<h:head>
+		<meta charset="UTF-8" />
+		<title>Knjižnica</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
+		<style>
+		html,body{height:100%; background-image:linear-gradient(to left bottom, rgb(255, 19, 19), rgb(255, 255, 47))}
+		.red{color:red}
+		.middleBtn{
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+		</style>
+	</h:head>
+<body>
+
+<div class="container-fluid text-center">
+	<div class="col-sm-1 sidenav">
+			</div>
+	<div class="col-sm-4 text-left"><br/>
+				<div class="well">
+					<h1>Admin page</h1>
+					
+					<a href="vnos.xhtml">Knjige</a><br/>
+					<a href="vnosKnjigomatov.xhtml">Knjigomati</a><br/>
+					<a href="vnosUporabnikov.xhtml">Uporabniki</a><br/>
+						
+					
+				</div>
+			</div>
+	<div class="col-sm-6 text-left"><br/>
+				<div class="well">
+				Število knjig:
+	  			<h:outputText value="#{Zrno.knjigaDao.getKnjigeSt()}" ></h:outputText><br/>
+	  			Število knjigomatov:
+	  			<h:outputText value="#{Zrno.knjigomat.getKnjigomatSt()}" ></h:outputText><br/>
+	  			Število registriranih uporabnikov:
+	  			<h:outputText value="#{Zrno.upo.getUporabnikiSt()}" ></h:outputText>
+				</div>
+			</div>
+	<div class="col-sm-1 sidenav">
+	</div>
+</div>
+
+</body>
+</html>

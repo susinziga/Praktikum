@@ -1,15 +1,19 @@
 package projekt;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.text.ParseException;
 
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -17,6 +21,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import EJB.KnjigomatEJB;
 import EJB.UporabnikEJB;
@@ -31,12 +37,14 @@ public class Zrno implements Serializable  {
 	 */
 	private static final long serialVersionUID = -3108130695607179483L;
 	private Part uploadedFile;
-	private String folder = "C:\\FERI\\2.letnik\\Praktikum\\slike";
+	
 	private String knjigaInput;
 	private List<String> imenaKnjig;
 	
 	private Knjigomat kn= new Knjigomat();
 	private Uporabnik up= new Uporabnik();
+	
+	
 	
 	@EJB
 	KnjigaDao knjigaDao;
@@ -47,20 +55,50 @@ public class Zrno implements Serializable  {
 	@EJB
 	KnjigomatEJB knjigomat;
 	
+	private StreamedContent image;
 	private String cat=null;
 	private String isci=null;
 	private List<Integer>prikazIndex = new ArrayList<Integer>();
 	private List<Knjiga>prikaz = new ArrayList<Knjiga>();
 	
+	
+	public void init() {
+        image = new DefaultStreamedContent(new ByteArrayInputStream(knjigaDao.knjiga.slika)); 
+        System.out.println("t");
+    } 
+	
+	
 	public void dodajKnjigo() {
-		String path=saveFile();
+		String fileName="";
+		for(String cd:uploadedFile.getHeader("content-disposition").split(";")) {
+			if(cd.trim().startsWith("filename")) {
+				fileName=cd.substring(cd.indexOf('=')+1).trim();
+				fileName=fileName.substring(1,fileName.length()-1);
+			}
+			
+		}
+		System.out.println(fileName);
+		//Path patha=Paths.get(fileName);
+		Path path=saveFile();
+		byte[]b=null;
+		try {
+			
+			b=Files.readAllBytes(path);
+			System.out.println(b.length);
+			Files.delete(path);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		knjigaDao.addBook(path);
+		
+		knjigaDao.addBook(b);
 		refreshImenaKnjig();
 	}
 	public void izbrisiKnjigo() {
 		knjigaDao.deleteKnjiga(knjigaInput);
 	}
+	
 	
 	public Uporabnik getUp() {
 		return up;
@@ -126,13 +164,18 @@ public class Zrno implements Serializable  {
 	}
 	
 	
-	public String saveFile(){
+	public Path saveFile(){
+		Path path=null;
 		 String fileName="";
 		for(String cd:uploadedFile.getHeader("content-disposition").split(";")) {
 			if(cd.trim().startsWith("filename")) {
 				fileName=cd.substring(cd.indexOf('=')+1).trim();
 			}
 			
+		}
+		System.out.println(fileName);
+		if(fileName.indexOf("\\")!=-1) {
+			fileName=fileName.substring(fileName.lastIndexOf("\\"));
 		}
 		System.out.print(fileName);
 		fileName=fileName.substring(1,fileName.length()-1);
@@ -141,13 +184,15 @@ public class Zrno implements Serializable  {
 		
 		
 			 	System.out.println("dela tu");
-		         Files.copy(input, new File(folder, fileName).toPath());
+		         Files.copy(input, new File("C:\\Slike", fileName).toPath());
+		         path=Paths.get("C:\\Slike", fileName);
+		         
 		     }
 		     catch (IOException e) {
 		         e.printStackTrace();
 		     }
 		 
-		 return folder+"\\"+fileName;
+		 return path;
 	}
 	
 	
@@ -221,12 +266,18 @@ public class Zrno implements Serializable  {
 	public void setUploadedFile(Part uploadedFile) {
 		this.uploadedFile = uploadedFile;
 	}
-	public String getFolder() {
-		return folder;
+
+
+	public StreamedContent getImage() {
+		return image;
 	}
-	public void setFolder(String folder) {
-		this.folder = folder;
+
+
+	public void setImage(StreamedContent image) {
+		this.image = image;
 	}
+
+	
 
 	
 }

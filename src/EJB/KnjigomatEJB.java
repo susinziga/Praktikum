@@ -19,6 +19,12 @@ public class KnjigomatEJB {
 		em.persist(k);
 		
 	}
+	
+	@SuppressWarnings("unchecked")
+	public String getKnjigomatSt() {
+		List<Knjigomat>knj= em.createQuery("SELECT k FROM Knjigomat k").getResultList();
+		return knj.size()+"";
+	}
 
 	
 	public List<Knjigomat> getKnjigomat(int id) {

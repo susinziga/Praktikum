@@ -3,6 +3,7 @@ package rest;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -55,6 +56,26 @@ public class KnjigaRest {
 		}*/
 		
 		/*Omogocen POST knjiga*/
+		
+		@GET
+		@Path("/knjiga/{byte}")
+		public String vrniStr(@PathParam("byte") byte[]b) {
+			String str=Base64.getEncoder().encodeToString(b);
+			System.out.println("dela");
+			return str;
+			//return Response.ok(str).build();
+		}
+		
+		@GET
+		@Path("/knjiga/")
+		public String vrniStr() {
+			
+			System.out.println("dela");
+			return "ja";
+			//return Response.ok(str).build();
+		}
+		
+		
 		@POST
 		@Path("/knjiga/{id}")
 		public Response vrniKnjigoPost(@PathParam("id") String idS) {
