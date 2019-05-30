@@ -5,11 +5,14 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
+
+import EJB.UporabnikEJB;
 import projekt.Knjiga;
+import projekt.Uporabnik;
 
 public class IskanjeDela {
-	
-	
+
 	public static List<Integer> isci(List <Knjiga> knjige,String iscem,String cat) throws IOException, ParseException  {
 		List<Integer> koncna = new ArrayList<Integer>();
 		

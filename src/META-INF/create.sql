@@ -14,4 +14,4 @@ insert into knjigomat values (null,"Pri avtobusni","Gosposvestka",50)
 insert into knjigomat values (null,"Pri labodih","Lent",50)
 insert into knjigomat values (null,"Pri kuznem znamenju","Glavni trg",50)
 
-insert into uporabnik values (null,"admin","admin","admin","123","admin")
+insert into uporabnik values (null,"admin@gmail.com","admin","admin","123","admin")

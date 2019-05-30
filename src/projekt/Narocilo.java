@@ -20,6 +20,8 @@ public class Narocilo {
 
 	
 	public int id;
+	public boolean stanje;
+	
 	public Date datumOd;
 	public Date datumDo;
 	public Uporabnik uporabnik;
@@ -77,7 +79,12 @@ public class Narocilo {
 		this.knjigomat = knjigomat;
 	}
 	
-	
+	public boolean getStanje() {
+		return stanje;
+	}
+	public void setStanje(boolean stanje) {
+		this.stanje = stanje;
+	}
 	
 	
 }

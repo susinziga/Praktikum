@@ -21,7 +21,7 @@ public class Izposoja {
 	public boolean stanje;
 	public Date datumOd;
 	public Date datumDo;
-	public Narocilo narocilo;
+	public Knjiga knjiga;
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -50,14 +50,16 @@ public class Izposoja {
 	public void setDatumDo(Date datumDo) {
 		this.datumDo = datumDo;
 	}
-	
 	@OneToOne
-	public Narocilo getNarocilo() {
-		return narocilo;
+	public Knjiga getKnjiga() {
+		return knjiga;
 	}
-	public void setNarocilo(Narocilo narocilo) {
-		this.narocilo = narocilo;
+	public void setKnjiga(Knjiga knjiga) {
+		this.knjiga = knjiga;
 	}
+	
+	
+	
 	
 	
 }

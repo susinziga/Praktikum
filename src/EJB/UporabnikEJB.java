@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 
 import projekt.Knjiga;
 import projekt.Knjigomat;
+import projekt.Narocilo;
 import projekt.Uporabnik;
 
 @Stateless
@@ -32,6 +33,14 @@ public Uporabnik najdId(int id) {
 		
 		return em.find(Uporabnik.class, id);
 	}
+public List<Uporabnik> vrniVse() {
+	return em.createQuery("select a from Uporabnik a ").getResultList();
+	
+}
+public Uporabnik najdi(String qr) {
+	int id= Integer.parseInt(qr);
+	return (Uporabnik) em.createQuery("select a from Uporabnik a where idUporabnik="+id).getSingleResult();
+}
 
 @SuppressWarnings("unchecked")
 public String getUporabnikiSt() {

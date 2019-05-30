@@ -127,7 +127,7 @@ public class Knjiga implements Serializable {
 		return "Knjiga [naslov=" + naslov + ", avtor=" + avtor + ", vrsta=" + vrsta+ ", blob="+slika.length+"]";
 	}
 
-	public boolean isStanje() {
+	public boolean getStanje() {
 		return stanje;
 	}
 

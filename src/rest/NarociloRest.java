@@ -58,6 +58,8 @@ public class NarociloRest {
 	public Response iskanjeKnjige(@PathParam("upo") int idUpo,@PathParam("knjiga") int idKnjija,@PathParam("masina") String masinaLokacija ) throws IOException, ParseException {
 	
 		Knjiga k = knjigaEjb.najdId(idKnjija);
+		k.setStanje(false);
+		knjigaEjb.posodobi(k);
 		int idknjigomat=0;
 		List<Knjigomat> vsi= knjigomatEjb.vrniVse();
 		Knjigomat masina= null;
@@ -75,7 +77,7 @@ public class NarociloRest {
 		nar.setKnjiga(k);
 		nar.setKnjigomat(masina);
 		nar.setUporabnik(upo);
-	
+		nar.setStanje(true);
 		
 		ejb.dodajNarocilo(nar);
 		
@@ -89,5 +91,69 @@ public class NarociloRest {
 		
 			return Response.ok("Uspesno").build();
 		
+	}
+	
+	/*Dobi narocila za uporabnika*/
+	@POST
+	@Path("/vrni/{upo}")
+	@Produces("application/json")
+	public Response vrniNarocila(@PathParam("upo") int idUpo ) throws IOException, ParseException {
+	List <Narocilo> vsi = ejb.getNarocila();
+	List <Integer> koncna= new ArrayList<Integer>();
+	for (Narocilo n : vsi) {
+		if (n.getUporabnik().getId()==idUpo&&n.getStanje()==true) {
+			koncna.add(n.getId());
+		}
+	}
+	
+		if (vsi.size()>0) {
+			return Response.ok(koncna).build();
+		}
+		else 
+			return Response.ok().build();
+		
+	}
+	@POST
+	@Path("/celo/{upo}&{masina}")
+	@Produces("application/json")
+	public Response vrniNar(@PathParam("upo") int idUpo, @PathParam("masina") int masina ) throws IOException, ParseException {
+	List <Narocilo> vsi = ejb.getNarocila();
+	List <Narocilo> vsi2= new ArrayList<Narocilo>();
+	List <Knjiga> knjige= new ArrayList<Knjiga>();
+	for (Narocilo n:vsi) {
+		if (n.getKnjigomat().getId()==masina) {
+			vsi2.add(n);
+			
+		}
+	}
+	
+	for (Narocilo n:vsi2) {
+	Knjiga k=knjigaEjb.najdId(n.getKnjiga().getId());
+	knjige.add(k);
+	
+	}
+	
+	
+		if (vsi.size()>0) {
+			return Response.ok(knjige).build();
+		}
+		else 
+			return Response.ok().build();
+		
+	}
+	@POST
+	@Path("/vrniID/{upo}&{knjiga}&{masina}")
+	@Produces("application/json")
+	public Response vrniID(@PathParam("upo") int idUpo,@PathParam("knjiga") int idKnjija,@PathParam("masina")int masinaID ) throws IOException, ParseException {
+	
+	List<Narocilo> vsi= ejb.getNarocila();
+	int koncna = 0;
+	for(Narocilo n:vsi) {
+		if(n.getKnjigomat().getId()==masinaID && n.getUporabnik().getId()==idUpo && n.getKnjiga().getId()==idKnjija ) {
+	koncna=n.getId();
+		}
+
+	}
+	return Response.ok(koncna).build();
 	}
 }
