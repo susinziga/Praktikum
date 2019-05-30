@@ -95,7 +95,7 @@ public class Knjiga implements Serializable {
 		return "Knjiga [naslov=" + naslov + ", avtor=" + avtor + ", vrsta=" + vrsta+ "]";
 	}
 
-	public boolean isStanje() {
+	public boolean getStanje() {
 		return stanje;
 	}
 

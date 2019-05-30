@@ -21,6 +21,7 @@ import javax.ws.rs.core.UriInfo;
 
 
 import EJB.KnjigomatEJB;
+import EJB.NarociloEJB;
 import projekt.Knjiga;
 import projekt.Knjigomat;
 
@@ -32,6 +33,9 @@ public class KnjigomatRest {
 	
 	@EJB
 	private KnjigomatEJB ejb;
+	
+	@EJB
+	private NarociloEJB narociloEjb;
 
 	@Context
     private UriInfo context;
@@ -41,7 +45,7 @@ public class KnjigomatRest {
 		return Response.ok(ejb.vrniVse()).build();
 	}
 
-	/*Omogocen GET knjiga*/	
+	
 	@POST
 	@Path("/vsi/")
 	@Produces("application/json")
@@ -58,6 +62,25 @@ public class KnjigomatRest {
 			return Response.ok(vrni).build();
 		} else {
 			return Response.status(403).entity("KnjigeNiMogoceNajtiException").build();
+		}
+	}
+	
+	@POST
+	@Path("/iskanjeMasina/{masina}")
+	@Produces("application/json")
+	public Response iskanjeMasina( @PathParam("masina") String masina ) throws IOException, ParseException {
+		Knjigomat najdene = ejb.najd(Integer.parseInt(masina));
+		List<Knjiga> vmesna = najdene.getKnjige();
+		List<Knjiga> konec=new ArrayList<Knjiga>();
+		for(Knjiga k:vmesna) {
+			if(k.getStanje()==true) {
+				konec.add(k);
+			}
+		}
+		if (najdene!=null) {
+			return Response.ok(konec).build();
+		} else {
+			return Response.status(403).entity("Napaka").build();
 		}
 	}
 	

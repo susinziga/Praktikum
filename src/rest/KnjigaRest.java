@@ -96,10 +96,6 @@ public class KnjigaRest {
 		public Response iskanjeKnjige() throws IOException, ParseException {
 			List <Knjiga> najdene = ejb.getKnjige();
 			
-			
-		
-			
-			
 			if (najdene.size() > 0) {
 				return Response.ok(najdene).build();
 			} else {

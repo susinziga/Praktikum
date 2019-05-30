@@ -1,5 +1,8 @@
 package rest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -33,6 +36,20 @@ public class UporabnikRest {
 		Uporabnik upo = ejb.najdId(id);
 		
 			return Response.ok(upo).build();
+		
+	}
+	
+	/*Omogocen POST uporabnik*/
+	@POST
+	@Path("/upot/")
+	public Response prijava() {
+	//	int id = Integer.parseInt(idS);
+		
+		int id=0;
+		List <Uporabnik> vsi = ejb.vrniVse();
+		
+		
+			return Response.ok(vsi).build();
 		
 	}
 }
