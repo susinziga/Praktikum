@@ -106,7 +106,7 @@ public class NarociloRest {
 		}
 	}
 	
-		if (vsi.size()>0) {
+		if (koncna.size()>0) {
 			return Response.ok(koncna).build();
 		}
 		else 

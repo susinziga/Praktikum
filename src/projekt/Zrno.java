@@ -130,6 +130,7 @@ public class Zrno implements Serializable  {
 	
 	/*Dodajnaje uporabnika*/
 	public void dodajUporabnika() {
+		up.setQrUporabnik("");
 		upo.dodajUporabnika(up);
 		up= new Uporabnik();
 	}

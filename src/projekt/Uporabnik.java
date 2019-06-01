@@ -1,11 +1,17 @@
 package projekt;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.apache.commons.codec.digest.DigestUtils;
 
 @Entity
 @Table(name="Uporabnik")
@@ -46,7 +52,22 @@ public class Uporabnik {
 		return qrUporabnik;
 	}
 	public void setQrUporabnik(String qrUporabnik) {
-		this.qrUporabnik = qrUporabnik;
+		String qr=ime+priimek+email+password;
+        MessageDigest md=null;
+		try {
+			md = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        byte[] hashInBytes = md.digest(qr.getBytes(StandardCharsets.UTF_8));
+
+        StringBuilder sb = new StringBuilder();
+        for (byte b : hashInBytes) {
+            sb.append(String.format("%02x", b));
+        }
+       
+		this.qrUporabnik = sb.toString();
 	}
 	
 	public String getPassword() {
