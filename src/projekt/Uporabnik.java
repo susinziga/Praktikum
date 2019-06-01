@@ -19,6 +19,7 @@ public class Uporabnik {
 	public String email;
 	
 	
+	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="idUporabnik")
@@ -40,6 +41,7 @@ public class Uporabnik {
 	public void setPriimek(String priimek) {
 		this.priimek = priimek;
 	}
+	
 	public String getQrUporabnik() {
 		return qrUporabnik;
 	}
