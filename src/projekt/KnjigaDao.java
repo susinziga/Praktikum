@@ -1,5 +1,6 @@
 package projekt;
 
+import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.List;
 
@@ -20,6 +21,13 @@ public class KnjigaDao {
 	private EntityManager em;
 
 	public void addBook(byte[]slika) {
+		String ab="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+		SecureRandom rnd = new SecureRandom();
+		StringBuilder sb=new StringBuilder(50);
+		for( int i = 0; i < 50; i++ ) 
+		      sb.append( ab.charAt( rnd.nextInt(ab.length()) ) );
+		String qrk=sb.toString();
+		knjiga.setQrKoda(qrk);
 		knjiga.setSlika(slika);
 		System.out.println(slika);
 		System.out.println("Dodajam "+knjiga+".");

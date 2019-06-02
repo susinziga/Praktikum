@@ -121,7 +121,7 @@ public class NarociloRest {
 	List <Narocilo> vsi2= new ArrayList<Narocilo>();
 	List <Knjiga> knjige= new ArrayList<Knjiga>();
 	for (Narocilo n:vsi) {
-		if (n.getKnjigomat().getId()==masina) {
+		if (n.getStanje()==true&&n.getKnjigomat().getId()==masina&&n.getUporabnik().getId()==idUpo) {
 			vsi2.add(n);
 			
 		}
