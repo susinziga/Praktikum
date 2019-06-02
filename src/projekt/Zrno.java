@@ -62,10 +62,29 @@ public class Zrno implements Serializable  {
 	private List<Knjiga>prikaz = new ArrayList<Knjiga>();
 	
 	
-	public void init() {
-        image = new DefaultStreamedContent(new ByteArrayInputStream(knjigaDao.knjiga.slika)); 
+	public void zazeni() {
+	       
         System.out.println("t");
+        
+        for(int i=1;i<=Integer.parseInt(knjigaDao.getKnjigeSt());i++) {
+        	knjigaDao.knjiga=knjigaDao.getKnjigaIde(i);
+        	Path path=Paths.get("C:\\slikeKnj","k"+i+".jpg");
+    		byte[]b=null;
+    		try {
+    			
+    			b=Files.readAllBytes(path);
+    			System.out.println(b.length);
+    			
+    		} catch (IOException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+    		knjigaDao.knjiga.setSlika(b);
+    		knjigaDao.posodobi(knjigaDao.knjiga);
+    		
+        }
     } 
+
 	
 	
 	public void dodajKnjigo() {

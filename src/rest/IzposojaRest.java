@@ -70,9 +70,9 @@ public class IzposojaRest {
 	public Response vrniKnjigo(@PathParam("qr") String qr) {
 		
 		List<Knjiga> vseKnjige= knjEjb.getKnjige();
-		String izpo="";
+		String izpo="nedela";
 		for (Knjiga kn:vseKnjige) {
-			izpo=qr;
+			
 			//izpo+=kn.getQrKoda()+", ";
 			if(kn.getQrKoda().equals(qr)) {			//tukaj spremeni-- vazi bom ;)
 				
@@ -81,13 +81,15 @@ public class IzposojaRest {
 				for (Izposoja iz:vseIz) {
 					
 					System.out.println("dela"+iz.getKnjiga().getId()+kn.getId());
-					if(iz.getKnjiga().getId()==kn.getId()) {
+					if(iz.getKnjiga().getId()==kn.getId()&&iz.isStanje()==true) {
+						izpo="dela";
 						System.out.println("delaas");
+						
 						iz.setStanje(false);
 						ejb.update(iz);
 						kn.setStanje(true);
 						knjEjb.posodobi(kn);
-						izpo="dela";
+						
 						break;
 					}
 				}
@@ -95,7 +97,7 @@ public class IzposojaRest {
 		}
 		
 		
-	
+			System.out.println(izpo);
 			return Response.ok(izpo).build();
 		
 	}
