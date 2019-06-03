@@ -16,10 +16,12 @@ import javax.ws.rs.core.UriInfo;
 
 import EJB.IzposojaEJB;
 import EJB.NarociloEJB;
+import EJB.UporabnikEJB;
 import projekt.Izposoja;
 import projekt.Knjiga;
 import projekt.KnjigaDao;
 import projekt.Narocilo;
+import projekt.Uporabnik;
 
 @Path("/izposoja")
 @Produces(MediaType.APPLICATION_JSON)
@@ -33,6 +35,8 @@ public class IzposojaRest {
 	@EJB
 	private KnjigaDao knjEjb;
 	
+	@EJB
+	private UporabnikEJB upoEjb;
 	
 	@EJB
 	private NarociloEJB narEjb;
@@ -45,16 +49,17 @@ public class IzposojaRest {
 	
 	/*Omogocen POST knjiga*/
 	@POST
-	@Path("/izpo/{narId}&{knjId}")
-	public Response izposodi(@PathParam("narId") int idNar,@PathParam("knjId") int idKnj) {
+	@Path("/izpo/{narId}&{knjId}&{upoId}")
+	public Response izposodi(@PathParam("narId") int idNar,@PathParam("knjId") int idKnj,@PathParam("upoId") int idUpo) {
 		Narocilo n = narEjb.najd(idNar);
 		Knjiga k=knjEjb.najdId(idKnj);
-		
+		Uporabnik u=upoEjb.najdId(idUpo);
 		Izposoja i= new Izposoja();
 		i.setDatumDo(null);
 		i.setDatumOd(null);
 		i.setStanje(true);
 		i.setKnjiga(k);
+		i.setUpo(u);
 		ejb.dodajizposoja(i);
 		
 		n.setStanje(false);
@@ -70,9 +75,9 @@ public class IzposojaRest {
 	public Response vrniKnjigo(@PathParam("qr") String qr) {
 		
 		List<Knjiga> vseKnjige= knjEjb.getKnjige();
-		String izpo="";
+		String izpo="nedela";
 		for (Knjiga kn:vseKnjige) {
-			izpo=qr;
+			
 			//izpo+=kn.getQrKoda()+", ";
 			if(kn.getQrKoda().equals(qr)) {			//tukaj spremeni-- vazi bom ;)
 				
@@ -81,13 +86,16 @@ public class IzposojaRest {
 				for (Izposoja iz:vseIz) {
 					
 					System.out.println("dela"+iz.getKnjiga().getId()+kn.getId());
-					if(iz.getKnjiga().getId()==kn.getId()) {
+					if(iz.getKnjiga().getId()==kn.getId()&&iz.isStanje()==true) {
+						izpo="dela";
 						System.out.println("delaas");
+						
 						iz.setStanje(false);
+						System.out.println(iz.isStanje());
 						ejb.update(iz);
 						kn.setStanje(true);
 						knjEjb.posodobi(kn);
-						izpo="dela";
+						
 						break;
 					}
 				}
@@ -95,7 +103,7 @@ public class IzposojaRest {
 		}
 		
 		
-	
+			System.out.println(izpo);
 			return Response.ok(izpo).build();
 		
 	}

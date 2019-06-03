@@ -22,6 +22,7 @@ public class Izposoja {
 	public Date datumOd;
 	public Date datumDo;
 	public Knjiga knjiga;
+	public Uporabnik upo;
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -56,6 +57,13 @@ public class Izposoja {
 	}
 	public void setKnjiga(Knjiga knjiga) {
 		this.knjiga = knjiga;
+	}
+	@OneToOne
+	public Uporabnik getUpo() {
+		return upo;
+	}
+	public void setUpo(Uporabnik upo) {
+		this.upo = upo;
 	}
 	
 	

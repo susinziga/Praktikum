@@ -43,6 +43,10 @@ public class KnjigaDao {
 		return em.createQuery("select a from Knjiga a where a.id=" + id).getResultList();
 	}
 	
+	public Knjiga getKnjigaIde(int id) {
+		return (Knjiga)em.createQuery("select a from Knjiga a where a.id=" + id).getSingleResult();
+	}
+	
 	public void setKnjiga(Knjiga knjiga) {
 		this.knjiga = knjiga;
 	}
