@@ -1,5 +1,6 @@
 package rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -103,6 +104,22 @@ public class IzposojaRest {
 		}
 		
 		
+			System.out.println(izpo);
+			return Response.ok(izpo).build();
+		
+	}
+	
+	@POST
+	@Path("/izpis/{idUpo}")
+	public Response izpis(@PathParam("idUpo") int idUpo) {
+			List <Izposoja> prva = ejb.vrniVse();
+			List <Izposoja> izpo= new ArrayList<Izposoja>();
+			for (Izposoja i:prva) {
+				if(i.getUpo().getId()==idUpo) {
+					izpo.add(i);
+				}
+			}
+			System.out.println(prva.size());
 			System.out.println(izpo);
 			return Response.ok(izpo).build();
 		
