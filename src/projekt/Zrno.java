@@ -33,62 +33,62 @@ import iskanje.IskanjeDela;
 public class Zrno implements Serializable  {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -3108130695607179483L;
 	private Part uploadedFile;
-	
+
 	private String knjigaInput;
 	private List<String> imenaKnjig;
-	
+
 	private Knjigomat kn= new Knjigomat();
 	private Uporabnik up= new Uporabnik();
-	
-	
-	
+
+
+
 	@EJB
 	KnjigaDao knjigaDao;
-	
+
 	@EJB
 	UporabnikEJB upo;
-	
+
 	@EJB
 	KnjigomatEJB knjigomat;
-	
+
 	Mailer mailer = new Mailer();
-	
+
 	private StreamedContent image;
 	private String cat=null;
 	private String isci=null;
 	private List<Integer>prikazIndex = new ArrayList<Integer>();
 	private List<Knjiga>prikaz = new ArrayList<Knjiga>();
-	
-	
+
+
 	public void zazeni() {
-	       
+
         System.out.println("t");
-        
+
         for(int i=1;i<=Integer.parseInt(knjigaDao.getKnjigeSt());i++) {
         	knjigaDao.knjiga=knjigaDao.getKnjigaIde(i);
         	Path path=Paths.get("C:\\slikeKnj","k"+i+".jpg");
     		byte[]b=null;
     		try {
-    			
+
     			b=Files.readAllBytes(path);
     			System.out.println(b.length);
-    			
+
     		} catch (IOException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
     		}
     		knjigaDao.knjiga.setSlika(b);
     		knjigaDao.posodobi(knjigaDao.knjiga);
-    		
-        }
-    } 
 
-	
-	
+        }
+    }
+
+
+
 	public void dodajKnjigo() {
 		String fileName="";
 		for(String cd:uploadedFile.getHeader("content-disposition").split(";")) {
@@ -96,14 +96,14 @@ public class Zrno implements Serializable  {
 				fileName=cd.substring(cd.indexOf('=')+1).trim();
 				fileName=fileName.substring(1,fileName.length()-1);
 			}
-			
+
 		}
 		System.out.println(fileName);
 		//Path patha=Paths.get(fileName);
 		Path path=saveFile();
 		byte[]b=null;
 		try {
-			
+
 			b=Files.readAllBytes(path);
 			System.out.println(b.length);
 			Files.delete(path);
@@ -111,16 +111,16 @@ public class Zrno implements Serializable  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
+
 		knjigaDao.addBook(b);
 		refreshImenaKnjig();
 	}
 	public void izbrisiKnjigo() {
 		knjigaDao.deleteKnjiga(knjigaInput);
 	}
-	
-	
+
+
 	public Uporabnik getUp() {
 		return up;
 	}
@@ -142,13 +142,13 @@ public class Zrno implements Serializable  {
 		prikaz.add(vmesnaKnj);
 	}
 	}
-	
+
 	/*Dodajnaje knjigomatov*/
 	public void dodajKnjigomat() {
 		knjigomat.dodajKnjikomat(kn);
 		kn= new Knjigomat();
 	}
-	
+
 	/*Dodajnaje uporabnika*/
 	public void dodajUporabnika() {
 		up.setQrUporabnik("");
@@ -172,9 +172,9 @@ public class Zrno implements Serializable  {
 	public void setKn(Knjigomat kn) {
 		this.kn = kn;
 	}
-	
-	
-	
+
+
+
 	public KnjigomatEJB getKnjigomat() {
 		return knjigomat;
 	}
@@ -184,8 +184,8 @@ public class Zrno implements Serializable  {
 	public KnjigaDao getKnjigaDao() {
 		return knjigaDao;
 	}
-	
-	
+
+
 	public Path saveFile(){
 		Path path=null;
 		 String fileName="";
@@ -193,7 +193,7 @@ public class Zrno implements Serializable  {
 			if(cd.trim().startsWith("filename")) {
 				fileName=cd.substring(cd.indexOf('=')+1).trim();
 			}
-			
+
 		}
 		System.out.println(fileName);
 		if(fileName.indexOf("\\")!=-1) {
@@ -202,24 +202,24 @@ public class Zrno implements Serializable  {
 		System.out.print(fileName);
 		fileName=fileName.substring(1,fileName.length()-1);
 		 try (InputStream input =  uploadedFile.getInputStream()) {
-			 
-		
-		
+
+
+
 			 	System.out.println("dela tu");
 		         Files.copy(input, new File("C:\\Slike", fileName).toPath());
 		         path=Paths.get("C:\\Slike", fileName);
-		         
+
 		     }
 		     catch (IOException e) {
 		         e.printStackTrace();
 		     }
-		 
+
 		 return path;
 	}
-	
-	
-	
-	
+
+
+
+
 	public void setKnjigaDao(KnjigaDao knjigaDao) {
 		this.knjigaDao = knjigaDao;
 	}
@@ -264,7 +264,7 @@ public class Zrno implements Serializable  {
 	public void setImenaKnjig(List<String> imenaKnjig) {
 		this.imenaKnjig = imenaKnjig;
 	}
-	
+
 	public String getKnjigaInput() {
 		return knjigaInput;
 	}
@@ -311,7 +311,7 @@ public class Zrno implements Serializable  {
 		this.mailer = mailer;
 	}
 
-	
 
-	
+
+
 }

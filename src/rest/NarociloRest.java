@@ -39,25 +39,25 @@ import projekt.Uporabnik;
 public class NarociloRest {
 	@EJB
 	private NarociloEJB ejb;
-	
+
 	@EJB
 	private KnjigaDao knjigaEjb;
-	
+
 	@EJB
 	private KnjigomatEJB knjigomatEjb;
-	
+
 	@EJB
 	private UporabnikEJB upoEjb;
 
 	@Context
     private UriInfo context;
-	
+
 	/*Dodaj narocilo*/
 	@POST
 	@Path("/dodaj/{upo}&{knjiga}&{masina}")
 	@Produces("application/json")
 	public Response iskanjeKnjige(@PathParam("upo") int idUpo,@PathParam("knjiga") int idKnjija,@PathParam("masina") String masinaLokacija ) throws IOException, ParseException {
-	
+
 		Knjiga k = knjigaEjb.najdId(idKnjija);
 		k.setStanje(false);
 		knjigaEjb.posodobi(k);
@@ -72,11 +72,11 @@ public class NarociloRest {
 				imeKnjigomat=knj.getIme();
 			}
 		}
-		
+
 		Uporabnik upo = upoEjb.najdId(idUpo);
 		Narocilo nar = new Narocilo();
 		Mailer mailer=new Mailer();
-		
+
 		nar.setDatumDo(null);
 		nar.setDatumOd(null);
 		nar.setKnjiga(k);
@@ -85,19 +85,19 @@ public class NarociloRest {
 		nar.setStanje(true);
 		mailer.akcijaNar(upo.email, upo.getQrUporabnik(),"24.5.2019",k.getNaslov(),imeKnjigomat);
 		ejb.dodajNarocilo(nar);
-		
+
 		k.setStanje(false);
-		
+
 		knjigaEjb.posodobi(k);
-		
+
 		knjigomatEjb.dodajKnjigo(idknjigomat, k);
 		knjigomatEjb.update(masina);
-		
-		
+
+
 			return Response.ok("Uspesno").build();
-		
+
 	}
-	
+
 	/*Dobi narocila za uporabnika*/
 	@POST
 	@Path("/vrni/{upo}")
@@ -110,13 +110,13 @@ public class NarociloRest {
 			koncna.add(n.getId());
 		}
 	}
-	
+
 		if (koncna.size()>0) {
 			return Response.ok(koncna).build();
 		}
-		else 
+		else
 			return Response.ok().build();
-		
+
 	}
 	@POST
 	@Path("/celo/{upo}&{masina}")
@@ -128,29 +128,29 @@ public class NarociloRest {
 	for (Narocilo n:vsi) {
 		if (n.getStanje()==true&&n.getKnjigomat().getId()==masina&&n.getUporabnik().getId()==idUpo) {
 			vsi2.add(n);
-			
+
 		}
 	}
-	
+
 	for (Narocilo n:vsi2) {
 	Knjiga k=knjigaEjb.najdId(n.getKnjiga().getId());
 	knjige.add(k);
-	
+
 	}
-	
-	
+
+
 		if (vsi.size()>0) {
 			return Response.ok(knjige).build();
 		}
-		else 
+		else
 			return Response.ok().build();
-		
+
 	}
 	@POST
 	@Path("/vrniID/{upo}&{knjiga}&{masina}")
 	@Produces("application/json")
 	public Response vrniID(@PathParam("upo") int idUpo,@PathParam("knjiga") int idKnjija,@PathParam("masina")int masinaID ) throws IOException, ParseException {
-	
+
 	List<Narocilo> vsi= ejb.getNarocila();
 	int koncna = 0;
 	for(Narocilo n:vsi) {

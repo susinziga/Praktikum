@@ -33,7 +33,10 @@ public Uporabnik najdId(int id) {
 		
 		return em.find(Uporabnik.class, id);
 	}
-
+public void brisi(Uporabnik k) {
+	em.remove(em.contains(k) ? k : em.merge(k));
+	
+}
 
 
 public List<Uporabnik> vrniVse() {

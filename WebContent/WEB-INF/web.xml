@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
   <display-name>projekt</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -10,4 +13,28 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>/faces/*</url-pattern>
   </servlet-mapping>
+  <security-constraint>
+  <display-name>c01</display-name>
+  <web-resource-collection>
+    <web-resource-name>Admin page</web-resource-name>
+    <url-pattern>/faces/admin.xhtml</url-pattern>
+    <url-pattern>/faces/vnos.xhtml</url-pattern>
+    <url-pattern>/faces/admin.xhtml</url-pattern>
+    <url-pattern>/faces/vnosKnjigomatov.xhtml</url-pattern>
+    <url-pattern>/faces/vnosUporabnikov.xhtml</url-pattern>
+  </web-resource-collection>
+  <auth-constraint>
+    <role-name>admin</role-name>
+  </auth-constraint>
+  </security-constraint>
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <form-login-config>
+      <form-login-page>/login.html</form-login-page>
+      <form-error-page>/login.html</form-error-page>
+    </form-login-config>
+  </login-config>
+  <security-role>
+    <role-name>admin</role-name>
+  </security-role>
 </web-app>
