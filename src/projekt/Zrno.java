@@ -112,13 +112,15 @@ public class Zrno implements Serializable  {
 		
 		
 		knjigaDao.addBook(b);
-		refreshImenaKnjig();
 	}
-	public void izbrisiKnjigo() {
-		knjigaDao.deleteKnjiga(knjigaInput);
+	public void izbrisiKnjigo(int id) {
+		Knjiga brisi = knjigaDao.najdi(id);
+		knjigaDao.brisi(brisi);
 	}
-	
-	
+	public void izbrisiUporabnika(int id) {
+		Uporabnik brisi = upo.najdId(id);
+		upo.brisi(brisi);
+	}
 	public Uporabnik getUp() {
 		return up;
 	}
@@ -271,15 +273,6 @@ public class Zrno implements Serializable  {
 		this.knjigaInput = knjigaInput;
 	}
 
-	public void refreshImenaKnjig() {
-		imenaKnjig = new ArrayList<String>();
-		for(Knjiga book : knjigaDao.getKnjige()) {
-			imenaKnjig.add(book.getNaslov());
-		}
-	}
-	public void izberiKnjigo() {
-		knjigaDao.izberiKnjigo(knjigaInput);
-	}
 	public Part getUploadedFile() {
 		return uploadedFile;
 	}

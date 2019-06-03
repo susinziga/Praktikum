@@ -48,7 +48,7 @@ public class IzposojaRest {
 	@Path("/izpo/{narId}&{knjId}")
 	public Response izposodi(@PathParam("narId") int idNar,@PathParam("knjId") int idKnj) {
 		Narocilo n = narEjb.najd(idNar);
-		Knjiga k=knjEjb.najdId(idKnj);
+		Knjiga k=knjEjb.najdi(idKnj);
 		
 		Izposoja i= new Izposoja();
 		i.setDatumDo(null);

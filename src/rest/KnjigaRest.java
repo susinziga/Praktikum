@@ -80,7 +80,7 @@ public class KnjigaRest {
 		@Path("/knjiga/{id}")
 		public Response vrniKnjigoPost(@PathParam("id") String idS) {
 			int id = Integer.parseInt(idS);
-			Knjiga kn = ejb.najdId(id);
+			Knjiga kn = ejb.najdi(id);
 			if (kn != null) {
 				return Response.ok(kn).build();
 			} else {
@@ -99,7 +99,7 @@ public class KnjigaRest {
 			List <Integer> najdeniID = IskanjeDela.isci(ejb.getKnjige(), isci, cat);
 			
 			for (Integer i: najdeniID) {
-				Knjiga k = ejb.najdId(i);
+				Knjiga k = ejb.najdi(i);
 				najdene.add(k);
 			
 			}

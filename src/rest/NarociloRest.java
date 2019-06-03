@@ -57,7 +57,7 @@ public class NarociloRest {
 	@Produces("application/json")
 	public Response iskanjeKnjige(@PathParam("upo") int idUpo,@PathParam("knjiga") int idKnjija,@PathParam("masina") String masinaLokacija ) throws IOException, ParseException {
 	
-		Knjiga k = knjigaEjb.najdId(idKnjija);
+		Knjiga k = knjigaEjb.najdi(idKnjija);
 		k.setStanje(false);
 		knjigaEjb.posodobi(k);
 		int idknjigomat=0;
@@ -128,7 +128,7 @@ public class NarociloRest {
 	}
 	
 	for (Narocilo n:vsi2) {
-	Knjiga k=knjigaEjb.najdId(n.getKnjiga().getId());
+	Knjiga k=knjigaEjb.najdi(n.getKnjiga().getId());
 	knjige.add(k);
 	
 	}
