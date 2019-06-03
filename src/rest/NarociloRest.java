@@ -27,6 +27,7 @@ import iskanje.IskanjeDela;
 import projekt.Knjiga;
 import projekt.KnjigaDao;
 import projekt.Knjigomat;
+import projekt.Mailer;
 import projekt.Narocilo;
 import projekt.Uporabnik;
 
@@ -61,24 +62,28 @@ public class NarociloRest {
 		k.setStanje(false);
 		knjigaEjb.posodobi(k);
 		int idknjigomat=0;
+		String imeKnjigomat="";
 		List<Knjigomat> vsi= knjigomatEjb.vrniVse();
 		Knjigomat masina= null;
 		for(Knjigomat knj:vsi) {
 			if(knj.getLokacija().equals(masinaLokacija)) {
 				masina=knj;
 				idknjigomat=knj.getId();
+				imeKnjigomat=knj.getIme();
 			}
 		}
 		
 		Uporabnik upo = upoEjb.najdId(idUpo);
 		Narocilo nar = new Narocilo();
+		Mailer mailer=new Mailer();
+		
 		nar.setDatumDo(null);
 		nar.setDatumOd(null);
 		nar.setKnjiga(k);
 		nar.setKnjigomat(masina);
 		nar.setUporabnik(upo);
 		nar.setStanje(true);
-		
+		mailer.akcijaNar(upo.email, upo.getQrUporabnik(),"24.5.2019",k.getNaslov(),imeKnjigomat);
 		ejb.dodajNarocilo(nar);
 		
 		k.setStanje(false);

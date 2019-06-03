@@ -20,6 +20,7 @@ import EJB.UporabnikEJB;
 import projekt.Izposoja;
 import projekt.Knjiga;
 import projekt.KnjigaDao;
+import projekt.Mailer;
 import projekt.Narocilo;
 import projekt.Uporabnik;
 
@@ -55,11 +56,14 @@ public class IzposojaRest {
 		Knjiga k=knjEjb.najdId(idKnj);
 		Uporabnik u=upoEjb.najdId(idUpo);
 		Izposoja i= new Izposoja();
+		Mailer mailer = new Mailer();
+		
 		i.setDatumDo(null);
 		i.setDatumOd(null);
 		i.setStanje(true);
 		i.setKnjiga(k);
 		i.setUpo(u);
+		mailer.akcijaIzp(u.getEmail(),"20.5.2019", k.getNaslov());
 		ejb.dodajizposoja(i);
 		
 		n.setStanje(false);
