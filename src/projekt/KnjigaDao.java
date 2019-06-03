@@ -62,8 +62,9 @@ public class KnjigaDao {
 		return knj.size()+"";
 	}
 	
-	public void deleteKnjiga(int id) {
+	public void deleteKnjiga(String value) {
 		System.out.println("Brišem "+knjiga+".");
+		int id = findKnjigaId(value);
 		em.createQuery("DELETE FROM Knjiga k WHERE k.id="+id+"").executeUpdate();
 	}
 	
@@ -103,16 +104,13 @@ public class KnjigaDao {
 		return id;
 	}
 	
-	public Knjiga najdi(int id) {
-			
-			return em.find(Knjiga.class, id);
-		}
-	public void posodobi (Knjiga k) {
-		em.merge(k);
+public Knjiga najdId(int id) {
+		
+		return em.find(Knjiga.class, id);
 	}
-	public void brisi(Knjiga k) {
-		em.remove(em.contains(k) ? k : em.merge(k));
-	}
+public void posodobi (Knjiga k) {
+	em.merge(k);
+}
 
 
 }
