@@ -104,6 +104,10 @@ public class KnjigaRest {
 			
 			}
 			
+			for(int i=0;i<najdene.size();i++) {
+				najdene.get(i).setSlika(null);
+			}
+			
 			if (najdene.size() > 0) {
 				return Response.ok(najdene).build();
 			} else {
@@ -111,11 +115,18 @@ public class KnjigaRest {
 			}
 		}
 		
+		
+
+		
 		@POST
 		@Path("/iskanje/")
 		@Produces("application/json")
 		public Response iskanjeKnjige() throws IOException, ParseException {
 			List <Knjiga> najdene = ejb.getKnjige();
+			
+			for(int i=0;i<najdene.size();i++) {
+				najdene.get(i).setSlika(null);
+			}
 			
 			if (najdene.size() > 0) {
 				return Response.ok(najdene).build();

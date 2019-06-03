@@ -55,6 +55,8 @@ public class Zrno implements Serializable  {
 	@EJB
 	KnjigomatEJB knjigomat;
 	
+	Mailer mailer = new Mailer();
+	
 	private StreamedContent image;
 	private String cat=null;
 	private String isci=null;
@@ -295,6 +297,18 @@ public class Zrno implements Serializable  {
 
 	public void setImage(StreamedContent image) {
 		this.image = image;
+	}
+
+
+
+	public Mailer getMailer() {
+		return mailer;
+	}
+
+
+
+	public void setMailer(Mailer mailer) {
+		this.mailer = mailer;
 	}
 
 	
