@@ -170,10 +170,14 @@ public class IzposojaRest {
 		Narocilo n = narEjb.najd(idNar);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		Knjiga k=knjEjb.najdId(idKnj);
 =======
 		Knjiga k=knjEjb.najdi(idKnj);
 >>>>>>> parent of dc756a0... git gud
+=======
+		Knjiga k=knjEjb.najdId(idKnj);
+>>>>>>> parent of 6e2febf... git gud
 =======
 		Knjiga k=knjEjb.najdId(idKnj);
 >>>>>>> parent of 6e2febf... git gud
