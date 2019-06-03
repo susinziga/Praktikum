@@ -12,8 +12,5 @@
 	<classpathentry kind="lib" path="C:/FERI/2.letnik/Praktikum/wildfly-16.0.0.Final/modules/system/layers/base/javax/ejb/api/main/jboss-ejb-api_3.2_spec-1.0.1.Final.jar"/>
 	<classpathentry kind="lib" path="C:/FERI/2.letnik/Praktikum/wildfly-16.0.0.Final/modules/system/layers/base/javax/inject/api/main/javax.inject-1.jar"/>
 	<classpathentry kind="lib" path="C:/FERI/2.letnik/Praktikum/wildfly-16.0.0.Final/modules/system/layers/base/javax/enterprise/api/main/cdi-api-2.0.SP1.jar"/>
-	<classpathentry kind="lib" path="C:/FERI/2.letnik/Praktikum/wildfly-16.0.0.Final/modules/system/layers/base/javax/ws/rs/api/main/jboss-jaxrs-api_2.1_spec-1.0.2.Final.jar"/>
-	<classpathentry kind="lib" path="C:/FERI/2.letnik/Praktikum/wildfly-16.0.0.Final/modules/system/layers/base/javax/servlet/api/main/jboss-servlet-api_4.0_spec-1.0.0.Final.jar"/>
-	<classpathentry kind="lib" path="C:/FERI/2.letnik/Praktikum/wildfly-16.0.0.Final/modules/system/layers/base/javax/mail/api/main/javax.mail-1.6.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
