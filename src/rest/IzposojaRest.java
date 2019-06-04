@@ -1,5 +1,6 @@
 package rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -111,5 +112,40 @@ public class IzposojaRest {
 			return Response.ok(izpo).build();
 		
 	}
+@POST
+	@Path("/izpis/{idUpo}")
+	public Response izpis(@PathParam("idUpo") int idUpo) {
+			List <Izposoja> prva = ejb.vrniVse();
+			List <Izposoja> izpo= new ArrayList<Izposoja>();
+			for (Izposoja i:prva) {
+				if(i.getUpo().getId()==idUpo) {
+					izpo.add(i);
+				}
+			}
+			System.out.println(prva.size());
+			System.out.println(izpo);
+			return Response.ok(izpo).build();
+		
+	}
+@POST
+@Path("/izposoja/{knjId}&{upoId}")
+public Response izposodiBrezNar(@PathParam("knjId") int idKnj,@PathParam("upoId") int idUpo) {
 	
+	Knjiga k=knjEjb.najdId(idKnj);
+	Uporabnik u=upoEjb.najdId(idUpo);
+	Izposoja i= new Izposoja();
+	Mailer mailer = new Mailer();
+	
+	i.setDatumDo(null);
+	i.setDatumOd(null);
+	i.setStanje(true);
+	i.setKnjiga(k);
+	i.setUpo(u);
+	mailer.akcijaIzp(u.getEmail(),"20.5.2019", k.getNaslov());
+	ejb.dodajizposoja(i);
+	
+	
+		return Response.ok("uspesno").build();
+	
+}
 }
