@@ -26,3 +26,7 @@ insert into knjigomat values (null,"Pri kuznem znamenju","Glavni trg",50)
 
 insert into uporabnik values (null,"ziga.susin@gmail.com","Ziga","ziga","Susin","1zigasusin")
 insert into uporabnik values (null,"primoz.stopar@student.um.si","Primoz","pimi","Stopar","1pimistopar")
+insert into uporabnik values (null,"gasper.reher@student.um.si","Gasper","geslo","Reher","1gesloreher")
+
+insert into knjigomat_knjiga values(1,2);
+insert into knjigomat_knjiga values(1,3);
