@@ -9,8 +9,12 @@ insert into knjiga values(null,"J.K.Rowling","Harry Potter and The Cursed Child 
 insert into knjiga values(null,"Rachel Ford","World Whisperer","ghwwweewagag",null,true,"fiction")
 insert into knjiga values(null,"Kimberley Coleman","One Last Good Day","fagwwwweewewrttwtwetg",null,true,"thriller")
 insert into knjiga values(null,"Suzanne Dudley","Out of the box","aaafafagsdgsgsca",null,true,"self-help")
-insert into knjiga values(null,"Kimberley Coleman","One Last Good Day","fagwwwweeafagagaswewrttwtwetg",null,true,"thriller")
-
+insert into knjiga values(null,"Kimberley Coleman","One Last Good Day","fagwjjjjwwweeafagagaswewrttwtwetg",null,true,"thriller")
+insert into knjiga values (null,"Steve Jobs","Iphone je kurac","iphohdhdfhne",null,true,"entertainment")
+insert into knjiga values (null,"Douglas Peterson","How to study smart","hrtrthhtss",null,true,"education")
+insert into knjiga values (null,"Scott Trench","Set for Life","safattetsfarskf",null,true,"self-help")
+insert into knjiga values(null,"Suzanne Dudley","Out of the box","aaafafdgdgasca",null,true,"self-help")
+insert into knjiga values(null,"Paula Hudson","30 Days of Gratitude","fagagfffagag",null,true,"self-help")
 
 
 

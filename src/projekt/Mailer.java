@@ -28,7 +28,7 @@ public class Mailer {
 		//tip   1-narocilo ,  2-izposoj
 		//String email="ziga.susin@gmail.com";
     	String to = email;//change accordingly  
-        String from = "zigasusin10"; 
+        String from = "zigasusin11"; 
         String host = "smtp.gmail.com";//or IP address  
         Logger log=LoggerFactory.getLogger(Zrno.class);
 			log.info(email+"prvi del");
@@ -69,7 +69,7 @@ public class Mailer {
 		//tip   1-narocilo ,  2-izposoj
 		//String email="ziga.susin@gmail.com";
     	String to = email;//change accordingly  
-        String from = "zigasusin10"; 
+        String from = "zigasusin11"; 
         String host = "smtp.gmail.com";//or IP address  
         Logger log=LoggerFactory.getLogger(Zrno.class);
 			log.info(email+"prvi del");
@@ -125,7 +125,7 @@ public class Mailer {
 		//tip   1-narocilo ,  2-izposoj
 		//String email="ziga.susin@gmail.com";
     	String to = email;//change accordingly  
-        String from = "zigasusin10"; 
+        String from = "zigasusin11"; 
         String host = "smtp.gmail.com";//or IP address  
         for(int i =0; i< s.length();i++) {
         Logger log=LoggerFactory.getLogger(Zrno.class);
