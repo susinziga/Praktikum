@@ -73,7 +73,7 @@ public class KnjigomatRest {
 		List<Knjiga> vmesna = najdene.getKnjige();
 		List<Knjiga> konec=new ArrayList<Knjiga>();
 		for(Knjiga k:vmesna) {
-			if(k.getStanje()==true) {
+			if(k.getStanje().equals("navoljo")) {
 				konec.add(k);
 			}
 		}

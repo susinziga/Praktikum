@@ -3,6 +3,7 @@ package rest;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -59,7 +60,7 @@ public class NarociloRest {
 	public Response iskanjeKnjige(@PathParam("upo") int idUpo,@PathParam("knjiga") int idKnjija,@PathParam("masina") String masinaLokacija ) throws IOException, ParseException {
 	
 		Knjiga k = knjigaEjb.najdId(idKnjija);
-		k.setStanje(false);
+		k.setStanje("narocena");
 		knjigaEjb.posodobi(k);
 		int idknjigomat=0;
 		String imeKnjigomat="";
@@ -76,17 +77,19 @@ public class NarociloRest {
 		Uporabnik upo = upoEjb.najdId(idUpo);
 		Narocilo nar = new Narocilo();
 		Mailer mailer=new Mailer();
-		
-		nar.setDatumDo(null);
-		nar.setDatumOd(null);
+		java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+		 java.sql.Date novi = new java.sql.Date(date.getTime() + 14l*24l*60l*60l*1000l);
+		 System.out.println("DATUM "+ novi);
+		nar.setDatumDo(novi);
+		nar.setDatumOd(date);
 		nar.setKnjiga(k);
 		nar.setKnjigomat(masina);
 		nar.setUporabnik(upo);
 		nar.setStanje(true);
-		mailer.akcijaNar(upo.email, upo.getQrUporabnik(),"24.5.2019",k.getNaslov(),imeKnjigomat);
+		mailer.akcijaNar(upo.email, upo.getQrUporabnik(),novi+" ",k.getNaslov(),imeKnjigomat);
 		ejb.dodajNarocilo(nar);
 		
-		k.setStanje(false);
+		k.setStanje("narocena");
 		
 		knjigaEjb.posodobi(k);
 		

@@ -1,15 +1,15 @@
 --id,avtor,naslov,qr koda,NULL,stanje(true),vrsta
-insert into knjiga values (null,"Steve Jobs","Iphone je kurac","iphone",null,true,"entertainment")
-insert into knjiga values (null,"Douglas Peterson","How to study smart","htss",null,true,"education")
-insert into knjiga values (null,"Scott Trench","Set for Life","safasfaskf",null,true,"self-help")
-insert into knjiga values(null,"Suzanne Dudley","Out of the box","aaafafasca",null,true,"self-help")
-insert into knjiga values(null,"Paula Hudson","30 Days of Gratitude","fagagagag",null,true,"self-help")
-insert into knjiga values(null,"Aimee Nezhukumatathil","Oceanic","dddddd",null,true,"poetry")
-insert into knjiga values(null,"J.K.Rowling","Harry Potter and The Cursed Child pt1","fasdddddffggg",null,true,"fantasy")
-insert into knjiga values(null,"Rachel Ford","World Whisperer","ghwwweewagag",null,true,"fiction")
-insert into knjiga values(null,"Kimberley Coleman","One Last Good Day","fagwwwweewewrttwtwetg",null,true,"thriller")
-insert into knjiga values(null,"Suzanne Dudley","Out of the box","aaafafagsdgsgsca",null,true,"self-help")
-insert into knjiga values(null,"Kimberley Coleman","One Last Good Day","fagwwwweeafagagaswewrttwtwetg",null,true,"thriller")
+insert into knjiga values (null,"Steve Jobs","Iphone je kurac","iphone",null,"navoljo","entertainment")
+insert into knjiga values (null,"Douglas Peterson","How to study smart","htss",null,"navoljo","education")
+insert into knjiga values (null,"Scott Trench","Set for Life","safasfaskf",null,"navoljo","self-help")
+insert into knjiga values(null,"Suzanne Dudley","Out of the box","aaafafasca",null,"navoljo","self-help")
+insert into knjiga values(null,"Paula Hudson","30 Days of Gratitude","fagagagag",null,"navoljo","self-help")
+insert into knjiga values(null,"Aimee Nezhukumatathil","Oceanic","dddddd",null,"navoljo","poetry")
+insert into knjiga values(null,"J.K.Rowling","Harry Potter and The Cursed Child pt1","fasdddddffggg",null,"navoljo","fantasy")
+insert into knjiga values(null,"Rachel Ford","World Whisperer","ghwwweewagag",null,"navoljo","fiction")
+insert into knjiga values(null,"Kimberley Coleman","One Last Good Day","fagwwwweewewrttwtwetg",null,"navoljo","thriller")
+insert into knjiga values(null,"Suzanne Dudley","Out of the box","aaafafagsdgsgsca",null,"navoljo","self-help")
+insert into knjiga values(null,"Kimberley Coleman","One Last Good Day","fagwwwweeafagagaswewrttwtwetg",null,"navoljo","thriller")
 
 
 

@@ -43,7 +43,7 @@ public class Knjiga implements Serializable {
 	private String vrsta;
 	byte[]slika;
 	private String qrKoda;
-	private boolean stanje;
+	private String stanje;
 	
 	
 	
@@ -59,7 +59,7 @@ public class Knjiga implements Serializable {
 		this.vrsta = vrsta;
 		this.slika = slika;
 		this.qrKoda = qrKoda;
-		this.stanje=true;
+		this.stanje="navoljo";
 		
 	}
 	
@@ -127,11 +127,11 @@ public class Knjiga implements Serializable {
 		return "Knjiga [naslov=" + naslov + ", avtor=" + avtor + ", vrsta=" + vrsta+ ", blob="+slika.length+"]";
 	}
 
-	public boolean getStanje() {
+	public String getStanje() {
 		return stanje;
 	}
 
-	public void setStanje(boolean stanje) {
+	public void setStanje(String stanje) {
 		this.stanje = stanje;
 	}
 

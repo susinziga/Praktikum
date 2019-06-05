@@ -1,6 +1,7 @@
 package rest;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -58,13 +59,16 @@ public class IzposojaRest {
 		Uporabnik u=upoEjb.najdId(idUpo);
 		Izposoja i= new Izposoja();
 		Mailer mailer = new Mailer();
-		
-		i.setDatumDo(null);
-		i.setDatumOd(null);
+		java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+		 java.sql.Date novi = new java.sql.Date(date.getTime() + 14l*24l*60l*60l*1000l);
+		    System.out.println(novi);
+		i.setDatumDo(novi);
+		i.setDatumOd(date);
 		i.setStanje(true);
 		i.setKnjiga(k);
 		i.setUpo(u);
-		mailer.akcijaIzp(u.getEmail(),"20.5.2019", k.getNaslov());
+		String dat=i.getDatumDo()+" ";
+		mailer.akcijaIzp(u.getEmail(),dat, k.getNaslov());
 		ejb.dodajizposoja(i);
 		
 		n.setStanje(false);
@@ -98,7 +102,7 @@ public class IzposojaRest {
 						iz.setStanje(false);
 						System.out.println(iz.isStanje());
 						ejb.update(iz);
-						kn.setStanje(true);
+						kn.setStanje("vrnjena");
 						knjEjb.posodobi(kn);
 						
 						break;
@@ -135,15 +139,17 @@ public Response izposodiBrezNar(@PathParam("knjId") int idKnj,@PathParam("upoId"
 	Uporabnik u=upoEjb.najdId(idUpo);
 	Izposoja i= new Izposoja();
 	Mailer mailer = new Mailer();
-	
-	i.setDatumDo(null);
-	i.setDatumOd(null);
+	java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+	 java.sql.Date novi = new java.sql.Date(date.getTime() + 14l*24l*60l*60l*1000l);
+	i.setDatumDo(novi);
+	i.setDatumOd(date);
 	i.setStanje(true);
 	i.setKnjiga(k);
 	i.setUpo(u);
-	mailer.akcijaIzp(u.getEmail(),"20.5.2019", k.getNaslov());
+	mailer.akcijaIzp(u.getEmail(),novi+"", k.getNaslov());
 	ejb.dodajizposoja(i);
-	
+	k.setStanje("izposojena");
+	knjEjb.posodobi(k);
 	
 		return Response.ok("uspesno").build();
 	
