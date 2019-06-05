@@ -22,6 +22,7 @@ c) Uporabnika dodamo v AddUser.bat v datoteki strežnika Wildfly
 # Kloniranje
 Kloniranje brez razvojnega okolja z GitBash preko povezav:
 Repozitorij knjižnice z "git clone https://github.com/zigalepi/Praktikum.git"
+
 Repozitorija knjigomata z "git clone https://github.com/GasperReher/Klient_php.git"
 
 # Kaj omogoča
