@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Iterator;
@@ -44,6 +45,7 @@ public class Knjiga implements Serializable {
 	byte[]slika;
 	private String qrKoda;
 	private String stanje;
+
 	
 	
 	

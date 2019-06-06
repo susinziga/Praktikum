@@ -22,9 +22,11 @@ import javax.ws.rs.core.UriInfo;
 
 
 import EJB.KnjigomatEJB;
+import EJB.KnjigomatKnjigaEJB;
 import EJB.NarociloEJB;
 import EJB.UporabnikEJB;
 import iskanje.IskanjeDela;
+import iskanje.KnjigomatKnjiga;
 import projekt.Knjiga;
 import projekt.KnjigaDao;
 import projekt.Knjigomat;
@@ -49,6 +51,9 @@ public class NarociloRest {
 	
 	@EJB
 	private UporabnikEJB upoEjb;
+	
+	@EJB
+	private KnjigomatKnjigaEJB vmensaEjb;
 
 	@Context
     private UriInfo context;
@@ -58,10 +63,9 @@ public class NarociloRest {
 	@Path("/dodaj/{upo}&{knjiga}&{masina}")
 	@Produces("application/json")
 	public Response iskanjeKnjige(@PathParam("upo") int idUpo,@PathParam("knjiga") int idKnjija,@PathParam("masina") String masinaLokacija ) throws IOException, ParseException {
-	
+		String result="";
 		Knjiga k = knjigaEjb.najdId(idKnjija);
-		k.setStanje("narocena");
-		knjigaEjb.posodobi(k);
+		
 		int idknjigomat=0;
 		String imeKnjigomat="";
 		List<Knjigomat> vsi= knjigomatEjb.vrniVse();
@@ -73,7 +77,10 @@ public class NarociloRest {
 				imeKnjigomat=knj.getIme();
 			}
 		}
-		
+		if(masina.getProstor()-1<0) {
+			return Response.ok("polno").build();
+		}
+		else {
 		Uporabnik upo = upoEjb.najdId(idUpo);
 		Narocilo nar = new Narocilo();
 		Mailer mailer=new Mailer();
@@ -89,16 +96,21 @@ public class NarociloRest {
 		mailer.akcijaNar(upo.email, upo.getQrUporabnik(),novi+" ",k.getNaslov(),imeKnjigomat);
 		ejb.dodajNarocilo(nar);
 		
+		
 		k.setStanje("narocena");
-		
 		knjigaEjb.posodobi(k);
+		masina.setProstor(masina.getProstor()-1);
+		KnjigomatKnjiga vmes = new KnjigomatKnjiga();
+		vmes.setMasina(masina);
+		vmes.setKnjiga(k);
 		
-		knjigomatEjb.dodajKnjigo(idknjigomat, k);
+		
+
 		knjigomatEjb.update(masina);
 		
 		
 			return Response.ok("Uspesno").build();
-		
+		}
 	}
 	
 	/*Dobi narocila za uporabnika*/

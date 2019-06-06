@@ -21,7 +21,9 @@ import javax.ws.rs.core.UriInfo;
 
 
 import EJB.KnjigomatEJB;
+import EJB.KnjigomatKnjigaEJB;
 import EJB.NarociloEJB;
+import iskanje.KnjigomatKnjiga;
 import projekt.Knjiga;
 import projekt.Knjigomat;
 
@@ -36,6 +38,9 @@ public class KnjigomatRest {
 	
 	@EJB
 	private NarociloEJB narociloEjb;
+	
+	@EJB
+	private KnjigomatKnjigaEJB vmensaEjb;
 
 	@Context
     private UriInfo context;
@@ -70,7 +75,18 @@ public class KnjigomatRest {
 	@Produces("application/json")
 	public Response iskanjeMasina( @PathParam("masina") String masina ) throws IOException, ParseException {
 		Knjigomat najdene = ejb.najd(Integer.parseInt(masina));
-		List<Knjiga> vmesna = najdene.getKnjige();
+		
+		
+		
+		List<KnjigomatKnjiga> prva = vmensaEjb.vrniVse();
+		List<Knjiga>vmesna= new ArrayList<Knjiga>();
+		for (KnjigomatKnjiga v:prva) {
+			if(v.getMasina().getIme().equals(masina)) {
+				vmesna.add(v.getKnjiga());
+			}
+		}
+		
+		
 		List<Knjiga> konec=new ArrayList<Knjiga>();
 		for(Knjiga k:vmesna) {
 			if(k.getStanje().equals("navoljo")) {

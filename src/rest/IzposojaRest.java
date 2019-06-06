@@ -1,5 +1,6 @@
 package rest;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -17,11 +18,13 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import EJB.IzposojaEJB;
+import EJB.KnjigomatEJB;
 import EJB.NarociloEJB;
 import EJB.UporabnikEJB;
 import projekt.Izposoja;
 import projekt.Knjiga;
 import projekt.KnjigaDao;
+import projekt.Knjigomat;
 import projekt.Mailer;
 import projekt.Narocilo;
 import projekt.Uporabnik;
@@ -43,6 +46,9 @@ public class IzposojaRest {
 	
 	@EJB
 	private NarociloEJB narEjb;
+	
+	@EJB
+	private KnjigomatEJB masinaEjb;
 
 	@Context
     private UriInfo context;
@@ -70,7 +76,8 @@ public class IzposojaRest {
 		String dat=i.getDatumDo()+" ";
 		mailer.akcijaIzp(u.getEmail(),dat, k.getNaslov());
 		ejb.dodajizposoja(i);
-		
+		k.setStanje("izposojena");
+		knjEjb.posodobi(k);
 		n.setStanje(false);
 		narEjb.update(n);
 		
@@ -132,8 +139,8 @@ public class IzposojaRest {
 		
 	}
 @POST
-@Path("/izposoja/{knjId}&{upoId}")
-public Response izposodiBrezNar(@PathParam("knjId") int idKnj,@PathParam("upoId") int idUpo) {
+@Path("/izposoja/{knjId}&{upoId}&{masina}")
+public Response izposodiBrezNar(@PathParam("knjId") int idKnj,@PathParam("upoId") int idUpo,@PathParam("masina") int idmasin) {
 	
 	Knjiga k=knjEjb.najdId(idKnj);
 	Uporabnik u=upoEjb.najdId(idUpo);
@@ -150,8 +157,26 @@ public Response izposodiBrezNar(@PathParam("knjId") int idKnj,@PathParam("upoId"
 	ejb.dodajizposoja(i);
 	k.setStanje("izposojena");
 	knjEjb.posodobi(k);
+	Knjigomat ma=masinaEjb.najd(idmasin);
+	ma.setProstor(ma.getProstor()+1);
+	
 	
 		return Response.ok("uspesno").build();
+	
+}
+@POST
+@Path("/vrniDatum/{knjId}")
+public Response vrniDat(@PathParam("knjId") int idKnj) {
+		List <Izposoja> vse=ejb.vrniVse();
+		List <String> datum= new ArrayList<String>();
+		for(Izposoja i:vse) {
+			if(i.getKnjiga().getId()==idKnj) {
+				datum.add( i.getDatumDo()+" ");
+			}
+		}
+	
+	
+		return Response.ok(datum).build();
 	
 }
 }

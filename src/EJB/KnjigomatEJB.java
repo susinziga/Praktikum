@@ -57,12 +57,6 @@ public class KnjigomatEJB {
 	}
 
 
-	public void dodajKnjigo(int idKnj, Knjiga k) {
-		Knjigomat masina = em.find(Knjigomat.class, idKnj);
-		List<Knjiga> vseKnjige = masina.getKnjige();
-		vseKnjige.add(k);
-		em.merge(masina);
-		
-	}
+	
 
 }

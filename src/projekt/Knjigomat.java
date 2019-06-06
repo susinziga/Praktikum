@@ -23,7 +23,6 @@ public class Knjigomat implements Serializable {
 private int id;
 private String ime;
 private String lokacija;
-private List<Knjiga> knjige;
 private int prostor;
 
 
@@ -50,13 +49,6 @@ public void setLokacija(String lokacija) {
 	this.lokacija = lokacija;
 }
 
-@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-public List<Knjiga> getKnjige() {
-	return knjige;
-}
-public void setKnjige(List<Knjiga> knjige) {
-	this.knjige = knjige;
-}
 public int getProstor() {
 	return prostor;
 }
