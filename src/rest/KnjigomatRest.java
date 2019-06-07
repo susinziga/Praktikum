@@ -73,8 +73,25 @@ public class KnjigomatRest {
 	@POST
 	@Path("/iskanjeMasina/{masina}")
 	@Produces("application/json")
-	public Response iskanjeMasina( @PathParam("masina") String masina ) throws IOException, ParseException {
-		Knjigomat najdene = ejb.najd(Integer.parseInt(masina));
+	public Response iskanjeMasina( @PathParam("masina") int masina ) throws IOException, ParseException {
+		List<KnjigomatKnjiga> zac = vmensaEjb.vrniVse();
+		List<Knjiga> koncna=new ArrayList<Knjiga>();
+		for(KnjigomatKnjiga k:zac) {
+			if(k.getMasina().getId()==masina) {
+				if(k.getKnjiga().getStanje().equals("navoljo")) {
+					koncna.add(k.getKnjiga());
+				}
+			}
+		}
+		if (koncna.size()>0) {
+			return Response.ok(koncna).build();
+		} else {
+			return Response.status(403).entity("Napaka").build();
+		}
+		
+		
+		
+		/*Knjigomat najdene = ejb.najd(Integer.parseInt(masina));
 		
 		
 		
@@ -97,7 +114,7 @@ public class KnjigomatRest {
 			return Response.ok(konec).build();
 		} else {
 			return Response.status(403).entity("Napaka").build();
-		}
+		}*/
 	}
 	
 }
