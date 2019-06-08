@@ -14,6 +14,7 @@ import java.text.ParseException;
 
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -75,6 +76,7 @@ public class Zrno implements Serializable  {
 		for(Knjigomat k:knjigomati) {
 			String vrsta=najboljIzposojene(k.getId());
 			List<Knjiga> knjige=knjigaDao.getKnjige();
+			Collections.shuffle(knjige);
 			List<Knjiga> zaNoter=new ArrayList<Knjiga>();
 			int a=(int) ((k.getSkupajProstor()-10)*0.75);
 			System.out.println("vrsta"+vrsta+" "+k.getId());
