@@ -19,8 +19,10 @@ import javax.ws.rs.core.UriInfo;
 
 import EJB.IzposojaEJB;
 import EJB.KnjigomatEJB;
+import EJB.KnjigomatKnjigaEJB;
 import EJB.NarociloEJB;
 import EJB.UporabnikEJB;
+import iskanje.KnjigomatKnjiga;
 import projekt.Izposoja;
 import projekt.Knjiga;
 import projekt.KnjigaDao;
@@ -49,6 +51,9 @@ public class IzposojaRest {
 	
 	@EJB
 	private KnjigomatEJB masinaEjb;
+	
+	@EJB
+	private KnjigomatKnjigaEJB vmesniEjb;
 
 	@Context
     private UriInfo context;
@@ -65,6 +70,10 @@ public class IzposojaRest {
 		Uporabnik u=upoEjb.najdId(idUpo);
 		Izposoja i= new Izposoja();
 		Mailer mailer = new Mailer();
+		KnjigomatKnjiga knkn=vmesniEjb.getKnjigomatKnjiga(idKnj);
+		knkn.setJeNoter(false);
+		knkn.setJeSposojena(true);
+		vmesniEjb.update(knkn);
 		java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 		 java.sql.Date novi = new java.sql.Date(date.getTime() + 14l*24l*60l*60l*1000l);
 		    System.out.println(novi);
@@ -153,6 +162,10 @@ public Response izposodiBrezNar(@PathParam("knjId") int idKnj,@PathParam("upoId"
 	i.setStanje(true);
 	i.setKnjiga(k);
 	i.setUpo(u);
+	KnjigomatKnjiga knkn=vmesniEjb.getKnjigomatKnjiga(idKnj);
+	knkn.setJeNoter(false);
+	knkn.setJeSposojena(true);
+	vmesniEjb.update(knkn);
 	mailer.akcijaIzp(u.getEmail(),novi+"", k.getNaslov());
 	ejb.dodajizposoja(i);
 	k.setStanje("izposojena");

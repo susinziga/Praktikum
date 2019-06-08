@@ -25,8 +25,10 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import EJB.KnjigomatEJB;
+import EJB.KnjigomatKnjigaEJB;
 import EJB.UporabnikEJB;
 import iskanje.IskanjeDela;
+import iskanje.KnjigomatKnjiga;
 
 @Named("Zrno")
 @SessionScoped
@@ -46,6 +48,7 @@ public class Zrno implements Serializable  {
 	
 	
 	
+	
 	@EJB
 	KnjigaDao knjigaDao;
 	
@@ -55,6 +58,9 @@ public class Zrno implements Serializable  {
 	@EJB
 	KnjigomatEJB knjigomat;
 	
+	@EJB
+	KnjigomatKnjigaEJB knjiEjb;
+	
 	Mailer mailer = new Mailer();
 	
 	private StreamedContent image;
@@ -63,6 +69,57 @@ public class Zrno implements Serializable  {
 	private List<Integer>prikazIndex = new ArrayList<Integer>();
 	private List<Knjiga>prikaz = new ArrayList<Knjiga>();
 	
+	public void filaj() {
+		sprazniKnjigomate();
+		List<Knjigomat> knjigomati=knjigomat.vrniVse();
+		for(Knjigomat k:knjigomati) {
+			String vrsta=najboljIzposojene(k.getId());
+			List<Knjiga> knjige=knjigaDao.getKnjige();
+			List<Knjiga> zaNoter=new ArrayList<Knjiga>();
+			int a=(int) ((k.getSkupajProstor()-10)*0.75);
+			System.out.println("vrsta"+vrsta+" "+k.getId());
+			for(Knjiga kn:knjige) {
+				if(!(kn.getStanje().equals("navoljo"))) continue;
+				if(vrsta!="") {
+					if(kn.getVrsta().equals(vrsta)) {
+						zaNoter.add(kn);
+					}
+				}
+				else {
+					zaNoter.add(kn);
+				}
+				
+			}
+			int j=0;
+			for(int i=0;i<zaNoter.size();i++) {
+				dodajVKnjigomat(zaNoter.get(i), k);
+				j=j+1;
+				k.setProstor(k.getProstor()-1);
+				knjigomat.update(k);
+				if(j>=a) break;
+			}
+			for(Knjiga kn:knjige) {
+				if(kn.getStanje().equals("navoljo")) {
+					if(k.getProstor()<=10)	break;
+					dodajVKnjigomat(kn, k);
+					k.setProstor(k.getProstor()-1);
+					knjigomat.update(k);
+				}
+			}
+		}
+	
+		
+		//napolni.sprazniKnjigomate();
+		//napolni.najboljIzposojene(1);
+	}
+	
+	
+	public void dodajVKnjigomat(Knjiga knj,Knjigomat kn) {
+		knj.setStanje("vmasini");
+		knjigaDao.posodobi(knj);
+		KnjigomatKnjiga knjkn=new KnjigomatKnjiga(knj,kn,true,false);
+		knjiEjb.update(knjkn);
+	}
 	
 	public void zazeni() {
 	       
@@ -136,11 +193,81 @@ public class Zrno implements Serializable  {
 		new ArrayList<Integer>();
 		System.out.println("Not");
 		prikazIndex=IskanjeDela.isci(knjigaDao.getKnjige(),isci,cat);
-	for (Integer i: prikazIndex) {
-		System.out.println("IDJI: " +i);
-		Knjiga vmesnaKnj=  knjigaDao.getKnjigaId(i).get(0);
-		prikaz.add(vmesnaKnj);
+		for (Integer i: prikazIndex) {
+			System.out.println("IDJI: " +i);
+			Knjiga vmesnaKnj=  knjigaDao.getKnjigaId(i).get(0);
+			prikaz.add(vmesnaKnj);
+		}
 	}
+	
+	public void sprazniKnjigomate() {
+		List<KnjigomatKnjiga>knkn=knjiEjb.vrniVse();
+		for(KnjigomatKnjiga kn:knkn) {
+			if(kn.isJeNoter()==true)
+				kn.setJeNoter(false);
+				knjiEjb.update(kn);
+		}
+		List<Knjiga>knjige=knjigaDao.getKnjige();
+		for(Knjiga k:knjige) {
+			if(k.getStanje().equals("vmasini")||k.getStanje().equals("vrnjena")||k.getStanje().equals("naroceno")) {
+				k.setStanje("navoljo");
+				knjigaDao.posodobi(k);
+			}
+		}
+		List<Knjigomat>knjigomati=knjigomat.vrniVse();
+		for(Knjigomat k:knjigomati) {
+			k.setProstor(k.getSkupajProstor());
+			knjigomat.update(k);
+		}
+	}
+	
+	
+	public String najboljIzposojene(int idKnjigomat){
+		ArrayList<String>vrste=new ArrayList<String>();
+		ArrayList<Integer>stevilo=new ArrayList<Integer>();
+		
+		List<KnjigomatKnjiga>knkn=knjiEjb.vrniVse();
+		if(knkn!=null||knkn.size()>0) {
+		boolean nas=false;
+		for (int i=0;i<knkn.size();i++) {
+			if (knkn.get(i).getMasina().getId()!=idKnjigomat)
+				continue;
+			if(knkn.get(i).isJeSposojena()==false)
+				continue;
+			System.out.print(i);
+			nas=false;
+			for(int j=0;j<vrste.size();j++) {
+				if(knkn.get(i).getKnjiga().getVrsta().equals(vrste.get(j))){
+					stevilo.set(j, stevilo.get(j)+1);
+					nas=true;
+					break;
+				}
+				
+				
+			}
+			if(nas==true) continue;
+			vrste.add(knkn.get(i).getKnjiga().getVrsta());
+			stevilo.add(1);
+		}
+		if(vrste.size()>0) {
+			int max=0;
+			int index=0;
+			for(int j=0;j<stevilo.size();j++) {
+				if (stevilo.get(j)>max) {
+					max=stevilo.get(j);
+					index=j;
+				}
+			}
+			System.out.println(knkn);
+			System.out.println(vrste);
+			System.out.println(stevilo);
+			
+			return vrste.get(index);
+			}
+		else
+			return "";
+		}
+		else return "";
 	}
 	
 	/*Dodajnaje knjigomatov*/
@@ -216,6 +343,7 @@ public class Zrno implements Serializable  {
 		 
 		 return path;
 	}
+	
 	
 	
 	
@@ -310,6 +438,8 @@ public class Zrno implements Serializable  {
 	public void setMailer(Mailer mailer) {
 		this.mailer = mailer;
 	}
+
+	
 
 	
 

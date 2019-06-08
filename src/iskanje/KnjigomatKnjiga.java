@@ -16,6 +16,25 @@ public class KnjigomatKnjiga {
 	private int id;
 	private Knjiga knjiga;
 	private Knjigomat masina;
+	private boolean jeNoter;
+	private boolean jeSposojena;
+	
+	
+	public KnjigomatKnjiga() {
+		
+	}
+	
+	
+
+	public KnjigomatKnjiga(Knjiga knjiga, Knjigomat masina, boolean jeNoter, boolean jeSposojena) {
+		super();
+		this.knjiga = knjiga;
+		this.masina = masina;
+		this.jeNoter = jeNoter;
+		this.jeSposojena = jeSposojena;
+	}
+
+
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -39,6 +58,18 @@ public Knjigomat getMasina() {
 }
 public void setMasina(Knjigomat masina) {
 	this.masina = masina;
+}
+public boolean isJeNoter() {
+	return jeNoter;
+}
+public void setJeNoter(boolean jeNoter) {
+	this.jeNoter = jeNoter;
+}
+public boolean isJeSposojena() {
+	return jeSposojena;
+}
+public void setJeSposojena(boolean jeSposojena) {
+	this.jeSposojena = jeSposojena;
 }
 
 

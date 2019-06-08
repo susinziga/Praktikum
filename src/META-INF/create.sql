@@ -14,15 +14,14 @@ insert into knjiga values(null,"Kimberley Coleman","One Last Good Day","fagwwwwe
 
 
 
-insert into knjigomat values (null,"Tezno","Tezno",50)
-insert into knjigomat values (null,"Tabor","Tabor",50)
-insert into knjigomat values (null,"Pri avtobusni","Gosposvestka",50)
-insert into knjigomat values (null,"Pri labodih","Lent",50)
-insert into knjigomat values (null,"Pri kuznem znamenju","Glavni trg",50)
+insert into knjigomat values (null,"Tezno","Tezno",14,14)
+insert into knjigomat values (null,"Tabor","Tabor",14,14)
+insert into knjigomat values (null,"Pri avtobusni","Gosposvestka",14,14)
+insert into knjigomat values (null,"Pri labodih","Lent",14,14)
+insert into knjigomat values (null,"Pri kuznem znamenju","Glavni trg",14,14)
 
 insert into uporabnik values (null,"ziga.susin@gmail.com","Ziga","ziga","Susin","1zigasusin")
 insert into uporabnik values (null,"primoz.stopar@student.um.si","Primoz","pimi","Stopar","1pimistopar")
 insert into uporabnik values (null,"gasper.reher@student.um.si","Gasper","geslo","Reher","1gesloreher")
 
-insert into knjigomatknjiga values(null,3,1);
-insert into knjigomatknjiga values(null,4,1);
+insert into knjigomatknjiga values (null,true,true,3,1)

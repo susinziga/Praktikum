@@ -23,7 +23,8 @@ public class Knjigomat implements Serializable {
 private int id;
 private String ime;
 private String lokacija;
-private int prostor;
+private int prostor;	//prostor na voljo
+private int skupajProstor;	//skupaj prostor na voljo v knjigomatu
 
 
 
@@ -54,6 +55,12 @@ public int getProstor() {
 }
 public void setProstor(int prostor) {
 	this.prostor = prostor;
+}
+public int getSkupajProstor() {
+	return skupajProstor;
+}
+public void setSkupajProstor(int skupajProstor) {
+	this.skupajProstor = skupajProstor;
 }
  
 

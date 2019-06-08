@@ -81,6 +81,7 @@ public class NarociloRest {
 			return Response.ok("polno").build();
 		}
 		else {
+		KnjigomatKnjiga knkn=new KnjigomatKnjiga(k,masina,true,false);
 		Uporabnik upo = upoEjb.najdId(idUpo);
 		Narocilo nar = new Narocilo();
 		Mailer mailer=new Mailer();
@@ -100,9 +101,8 @@ public class NarociloRest {
 		k.setStanje("narocena");
 		knjigaEjb.posodobi(k);
 		masina.setProstor(masina.getProstor()-1);
-		KnjigomatKnjiga vmes = new KnjigomatKnjiga();
-		vmes.setMasina(masina);
-		vmes.setKnjiga(k);
+		
+		vmensaEjb.dodajKnjikomatKnjiga(knkn);
 		
 		
 

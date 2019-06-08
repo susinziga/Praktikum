@@ -22,7 +22,16 @@ public class KnjigomatKnjigaEJB {
 	}
 	
 
-	
+	public KnjigomatKnjiga getKnjigomatKnjiga(int idK) {
+		List<KnjigomatKnjiga>knkn=em.createQuery("select a from KnjigomatKnjiga a").getResultList();
+		KnjigomatKnjiga k=null;
+		for(KnjigomatKnjiga kn:knkn) {
+			if(kn.isJeNoter()==true&&kn.getKnjiga().getId()==idK) {
+				k=kn;
+			}
+		}
+		return k;
+	}
 	public List<KnjigomatKnjiga> getKnjigomat(int id) {
 		return em.createQuery("select a from Knjigomat a where a.id=" + id).getResultList();
 		
@@ -30,8 +39,9 @@ public class KnjigomatKnjigaEJB {
 
 	
 	public List<KnjigomatKnjiga> vrniVse() {
-		return em.createQuery("select a from KnjigomatKnjiga a " ).getResultList();
-		
+	
+		List<KnjigomatKnjiga>knj=em.createQuery("select k from KnjigomatKnjiga k").getResultList();
+		return knj;
 	}
 
 

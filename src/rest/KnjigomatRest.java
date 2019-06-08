@@ -78,7 +78,7 @@ public class KnjigomatRest {
 		List<Knjiga> koncna=new ArrayList<Knjiga>();
 		for(KnjigomatKnjiga k:zac) {
 			if(k.getMasina().getId()==masina) {
-				if(k.getKnjiga().getStanje().equals("navoljo")) {
+				if(k.isJeNoter()==true) {
 					koncna.add(k.getKnjiga());
 				}
 			}
