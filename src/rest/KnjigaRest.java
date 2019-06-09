@@ -104,9 +104,9 @@ public class KnjigaRest {
 			
 			}
 			
-			for(int i=0;i<najdene.size();i++) {
+			/*for(int i=0;i<najdene.size();i++) {
 				najdene.get(i).setSlika(null);
-			}
+			}*/
 			
 			if (najdene.size() > 0) {
 				return Response.ok(najdene).build();
@@ -124,9 +124,9 @@ public class KnjigaRest {
 		public Response iskanjeKnjige() throws IOException, ParseException {
 			List <Knjiga> najdene = ejb.getKnjige();
 			
-			for(int i=0;i<najdene.size();i++) {
+			/*for(int i=0;i<najdene.size();i++) {
 				najdene.get(i).setSlika(null);
-			}
+			}*/
 			
 			if (najdene.size() > 0) {
 				return Response.ok(najdene).build();
