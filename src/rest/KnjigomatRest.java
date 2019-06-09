@@ -88,9 +88,7 @@ public class KnjigomatRest {
 		} else {
 			return Response.status(403).entity("Napaka").build();
 		}
-		
-		
-		
+
 		/*Knjigomat najdene = ejb.najd(Integer.parseInt(masina));
 		
 		
@@ -115,6 +113,18 @@ public class KnjigomatRest {
 		} else {
 			return Response.status(403).entity("Napaka").build();
 		}*/
+	}
+	
+	@GET
+	@Path("/knjigomat/{id}")
+	public Response vrniKnjigoPost(@PathParam("id") String idS) {
+		int id = Integer.parseInt(idS);
+		Knjigomat kn = ejb.najd(id);
+		if (kn != null) {
+			return Response.ok(kn).build();
+		} else {
+			return Response.status(403).entity("KnjigomataNiMogoceNajtiException").build();
+		}
 	}
 	
 }

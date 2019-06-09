@@ -27,8 +27,8 @@ public class KnjigomatEJB {
 	}
 
 	
-	public List<Knjigomat> getKnjigomat(int id) {
-		return em.createQuery("select a from Knjigomat a where a.idKnjigomat=" + id).getResultList();
+	public Knjigomat getKnjigomat(int id) {
+		return (Knjigomat)em.createQuery("select a from Knjigomat a where a.idKnjigomat=" + id).getSingleResult();
 		
 	}
 
