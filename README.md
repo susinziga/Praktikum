@@ -20,7 +20,7 @@ Projekt Knjigomat omogoča izposojo knjig na knjigomatih, ki se nahajajo na več
 ### Grajeno z:
 * [PHP](https://www.php.net/docs.php) - UI knjigomat, UI uporabnik
 * [Bootstrap](https://getbootstrap.com/docs/4.3/getting-started/introduction/) - UI knjigomata na mobilni napravi, tablićnem računalniku in vključen pri PHP
-* [Jsp](https://docs.oracle.com/javaee/5/tutorial/doc/bnajo.html) - vnos, brisanje, urejanje knjig in uporabnikov v knjižnici
+* [JSP](https://docs.oracle.com/javaee/5/tutorial/doc/bnajo.html) - vnos, brisanje, urejanje knjig in uporabnikov v knjižnici
 * [Java](https://docs.oracle.com/javase/7/docs/api/) - Hranjenje podatkov v ozadju
 * [MySQL](https://dev.mysql.com/doc/) - Podatkovna baza
 * [Wildfly](https://docs.wildfly.org/16/) - Strežnik za JPA - hranjenje podatkov in slik  <i>(uporabljeno pri razvoju!)</i>
@@ -50,4 +50,13 @@ c) Uporabnika dodamo v AddUser.bat v datoteki strežnika Wildfly
 2. V razavijalnem okolju New project > Desni klik na ustvarjen projekt > GIT > URI "https://github.com/GasperReher/Klient_php.git" > Clone / Pull
 3. Več dostopno na: https://github.com/GasperReher/Klient_php
 
-## Uporaba
+## Avtorji
+
+| <a href="https://www.instagram.com/zigasusin/" target="_blank">**Žiga Sušin**</a> | <a href="https://www.instagram.com/gasperreher98/?hl=en" target="_blank">**Gašper Reher**</a> | <a href="https://www.instagram.com/toniharamija/" target="_blank">**Toni Haramija I.**</a> |<a href="https://www.instagram.com/bard.grujic/" target="_blank">**Bard Grujič**</a> |
+| :---: |:---:| :---:|:---:|
+| [![Žiga Sušin](https://avatars0.githubusercontent.com/u/39264729?s=200&v=3)](https://github.com/zigalepi)    | [![Gašper Reher](https://avatars0.githubusercontent.com/u/33724905?s=200&v=3)](https://github.com/GasperReher) | [![Toni Haramija I.](https://avatars1.githubusercontent.com/u/39265596?s=200&u=846fdedda24fc881866a1a98402a6e33c06c61f3&v=3)](https://github.com/Tonskii)  |[![Bard Grujič](https://avatars3.githubusercontent.com/u/33715866?s=200&v=3)](https://github.com/GrujicBard)  |
+| <a href="https://github.com/zigalepi" target="_blank">`https://github.com/zigalepi`</a> | <a href="https://github.com/GasperReher" target="_blank">`https://github.com/GasperReher`</a> | <a href="https://github.com/Tonskii" target="_blank">`https://github.com/Tonskii`</a> |<a href="https://github.com/GrujicBard" target="_blank">`https://github.com/GrujicBard`</a> |
+
+
+## Licence
+[MIT](https://choosealicense.com/licenses/mit/)
