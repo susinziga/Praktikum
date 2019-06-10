@@ -1,40 +1,70 @@
-# Priprava okolja knjižnica
-1. Razvijalno okolje Eclipse ali IntelliJ s strežnikom Wildfly(JBOSS)
-2. V razvijalnem okolju File > Import > GIT > URI "https://github.com/zigalepi/Praktikum.git" > Clone
-3. V Eclipsu uporaba git bash terminala:  
-a) Setting > Tools > Terminal   
-b) Shell Path, navedemo pot do bash.exe datoteke, ki jo najdemo v */Git/bin/bash.exe
-4.Uporabimo lahko tudi "team"
-a) Desni klik na projekt > Team > Git
-5. Konfiguriranje strežnika Wildfly:
-a) Prenos paketa strežnika Wildfly  
-b) V razvijalnem okolju odpremo zavihek Servers > New > Izberemo prenešeno datoteko in poimenujemo strežnik > Add - dodamo projekt > Run 
-c) Uporabnika dodamo v AddUser.bat v datoteki strežnika Wildfly   
-6. Lokalna podatkovna baza v MySQL, v Persistence poimenovana "PraktikumDS"
-7. Aplikacija je dostopna na Localhost:8080
-8. Za posodobitev sprememb ponovno zaženemo kot aplikacijo na strežniku
+# Knjigomat
+Projekt Knjigomat omogoča izposojo knjig na knjigomatih, ki se nahajajo na večih lokacijah po mestu Maribor. Uporabnikom je omogočeno naročevanje knjig na knjigomat, ki jim je najbližji ali kar direktna izposoja knjig, ki so na voljo v knjigomatu - okoli 50 knjig. Za prevzem ima vsak uporabnik svojo QR kodo na telefonu in vsak knjigomat ima bralnik QR kod. Knjige (tudi iz knjižnice) lahko uporabnik vrne na knjigomat. Na vsaki napravi beležimo katere knjige so najbolj izposojene in s tem žanrom nato avtomat napolnimo.
 
-# Priprava okolja knjigomat
-1. Razvijalno okolje ATOM z XAMPP / WAMP strežniško rešitvijo
-2. V razavijalnem okolju New project > Desni klik na ustvarjen projekt > GIT > URI "https://github.com/GasperReher/Klient_php.git" > Clone / Pull
-3. Več dostopno na: https://github.com/GasperReher/Klient_php
+## Kazalo
+- [Kaj omogoča](#kaj-omogoča)
+- [Tehnološki sklad](#tehnološki-sklad)
+- [Priprava razvojnega okolja knjižnice](#priprava-razvojnega-okolja-knjižnice)
+- [Priprava okolja knjigomat](#priprava-okolja-knjigomat)
+- [Avtorji](#avtorji)
+- [Licence](#licence)
 
-# Kloniranje
-Kloniranje brez razvojnega okolja z GitBash preko povezav:
-Repozitorij knjižnice z "git clone https://github.com/zigalepi/Praktikum.git"
-
-Repozitorija knjigomata z "git clone https://github.com/GasperReher/Klient_php.git"
-
-# Kaj omogoča
-Knjižnica omogoča:
+## Kaj omogoča
+**Knjižnica omogoča:**
+```
 - dodajanje, iskanje, brisanje, urejanje, naročanje in pregled vseh knjig;
 - dodajanje, brisanje, upravljanje uporabnikov in njihovih pravic;
 - pošiljanje potrditev naročil uporabniku z njegovo QR za dostop do naročila na knjigomatu.
-
-Knjigomat omogoča:
+```
+**Knjigomat omogoča:**
+```
 - pregled vseh knjig na voljo v knjigomatu;
 - vračanje knjig v knjigomat (s QR kodo - vsaka knjiga ima unikatno);
 - prevzem naročenih knjig na izbranem knjigomatu;
 - prijava uporabnika z uporabo QR kode;
+```
+## Tehnološki sklad
 
-# Uporaba
+### Grajeno z:
+* [PHP](https://www.php.net/docs.php) - UI knjigomat, UI uporabnik
+* [Bootstrap](https://getbootstrap.com/docs/4.3/getting-started/introduction/) - UI knjigomata na mobilni napravi, tablićnem računalniku in vključen pri PHP
+* [JSP](https://docs.oracle.com/javaee/5/tutorial/doc/bnajo.html) - vnos, brisanje, urejanje knjig in uporabnikov v knjižnici
+* [Java](https://docs.oracle.com/javase/7/docs/api/) - Hranjenje podatkov v ozadju
+* [MySQL](https://dev.mysql.com/doc/) - Podatkovna baza
+* [Wildfly](https://docs.wildfly.org/16/) - Strežnik za JPA - hranjenje podatkov in slik  <i>(uporabljeno pri razvoju!)</i>
+* [WAMP](https://docs.bitnami.com/installer/infrastructure/wamp/) - Strežnik za UI knjigomata   <i>(uporabljeno pri razvoju!)</i>
+
+### Arhitektura:
+![Arhitektura žal ni na voljo](https://i.imgur.com/qkEnle8.png)
+
+## Priprava razvojnega okolja knjižnice
+1. Razvijalno okolje Eclipse ali IntelliJ s strežnikom Wildfly(JBOSS)
+2. V razvojnem okolju Datoteka > Uvozi > GIT > URI "https://github.com/zigalepi/Praktikum.git" > Kloniraj
+3. V Eclipsu uporaba git bash terminala:  
+a) Nastavitve > Orodja > Terminal   
+b) Shell Path, navedemo pot do bash.exe datoteke, ki jo najdemo v */Git/bin/bash.exe
+4.Uporabimo lahko tudi "Ekipa"
+a) Desni klik na projekt > Ekipa > Git
+5. Konfiguriranje strežnika Wildfly:
+a) Prenos paketa strežnika Wildfly  
+b) V razvijalnem okolju odpremo zavihek Strežniki > Novo > Izberemo prenešeno datoteko in poimenujemo strežnik > Dodaj projekt > Zaženi 
+c) Uporabnika dodamo v AddUser.bat v datoteki strežnika Wildfly   
+6. Lokalna podatkovna baza v MySQL, v Persistence.xml poimenovana "PraktikumDS"
+7. Aplikacija je dostopna na Localhost:8080
+8. Za posodobitev sprememb ponovno zaženemo kot aplikacijo na strežniku
+
+## Priprava okolja knjigomat
+1. Razvijalno okolje ATOM z XAMPP / WAMP strežniško rešitvijo
+2. V razavijalnem okolju New project > Desni klik na ustvarjen projekt > GIT > URI "https://github.com/GasperReher/Klient_php.git" > Clone / Pull
+3. Več dostopno na: https://github.com/GasperReher/Klient_php
+
+## Avtorji
+
+| <a href="https://www.instagram.com/zigasusin/" target="_blank">**Žiga Sušin**</a> | <a href="https://www.instagram.com/gasperreher98/?hl=en" target="_blank">**Gašper Reher**</a> | <a href="https://www.instagram.com/toniharamija/" target="_blank">**Toni Haramija I.**</a> |<a href="https://www.instagram.com/bard.grujic/" target="_blank">**Bard Grujič**</a> |
+| :---: |:---:| :---:|:---:|
+| [![Žiga Sušin](https://avatars0.githubusercontent.com/u/39264729?s=200&v=3)](https://github.com/zigalepi)    | [![Gašper Reher](https://avatars0.githubusercontent.com/u/33724905?s=200&v=3)](https://github.com/GasperReher) | [![Toni Haramija I.](https://avatars1.githubusercontent.com/u/39265596?s=200&u=846fdedda24fc881866a1a98402a6e33c06c61f3&v=3)](https://github.com/Tonskii)  |[![Bard Grujič](https://avatars3.githubusercontent.com/u/33715866?s=200&v=3)](https://github.com/GrujicBard)  |
+| <a href="https://github.com/zigalepi" target="_blank">`https://github.com/zigalepi`</a> | <a href="https://github.com/GasperReher" target="_blank">`https://github.com/GasperReher`</a> | <a href="https://github.com/Tonskii" target="_blank">`https://github.com/Tonskii`</a> |<a href="https://github.com/GrujicBard" target="_blank">`https://github.com/GrujicBard`</a> |
+
+
+## Licence
+[MIT](https://choosealicense.com/licenses/mit/)
