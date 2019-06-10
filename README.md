@@ -15,12 +15,12 @@ Projekt Knjigomat omogoča izposojo knjig na knjigomatih, ki se nahajajo na več
 ```
 - dodajanje, iskanje, brisanje, urejanje, naročanje in pregled vseh knjig;
 - dodajanje, brisanje, upravljanje uporabnikov in spreminjanje njihovih pravic;
-- pošiljanje potrditev naročil uporabniku na mail, kater vključuje njegovo QR za dostop do naročila na knjigomatu.
+- pošiljanje potrditev naročil uporabniku na mail, ki vključuje QR za dostop do naročila na knjigomatu.
 ```
 **Knjigomat omogoča:**
 ```
 - pregled vseh knjig na voljo v knjigomatu;
-- vračanje knjig v knjigomat s QR kodo - vsaka knjiga ima unikatno (vrnemo lahko tudi knjige sposojene v knjižnici);
+- vračanje knjig v knjigomat s QR kodo, ki je unikatna za vsako knjigo (vrnemo lahko tudi knjige sposojene v knjižnici);
 - prevzem naročenih knjig na izbranem knjigomatu;
 - prijava uporabnika z uporabo QR kode;
 ```
@@ -29,7 +29,8 @@ Projekt Knjigomat omogoča izposojo knjig na knjigomatih, ki se nahajajo na več
 ### Grajeno z:
 * [PHP](https://www.php.net/docs.php) - UI knjigomat, UI uporabnik
 * [Bootstrap](https://getbootstrap.com/docs/4.3/getting-started/introduction/) - UI knjigomata na mobilni napravi, tablićnem računalniku in vključen pri PHP
-* [JSP](https://docs.oracle.com/javaee/5/tutorial/doc/bnajo.html) - vnos, brisanje, urejanje knjig in uporabnikov v knjižnici
+* [JSF](https://www.oracle.com/technetwork/java/javaee/documentation/index-137726.html) - vnos, brisanje, urejanje knjig in uporabnikov v knjižnici
+* [JQuery](https://api.jquery.com/) - Vključeno pri JSF
 * [Java](https://docs.oracle.com/javase/7/docs/api/) - Hranjenje podatkov v ozadju
 * [MySQL](https://dev.mysql.com/doc/) - Podatkovna baza
 * [Wildfly](https://docs.wildfly.org/16/) - Strežnik za JPA - hranjenje podatkov in slik  <i>(uporabljeno pri razvoju!)</i>
