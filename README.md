@@ -2,14 +2,14 @@
 Projekt Knjigomat omogoča izposojo knjig na knjigomatih, ki se nahajajo na večih lokacijah po mestu Maribor. Uporabnikom je omogočeno naročevanje knjig na knjigomat, ki jim je najbližji ali kar direktna izposoja knjig, ki so na voljo v knjigomatu - okoli 50 knjig. Za prevzem ima vsak uporabnik svojo QR kodo na telefonu in vsak knjigomat ima bralnik QR kod. Knjige (tudi iz knjižnice) lahko uporabnik vrne na knjigomat. Na vsaki napravi beležimo katere knjige so najbolj izposojene in s tem žanrom nato avtomat napolnimo.
 
 ## Kaj omogoča
+**Knjižnica omogoča:**
 ```
-Knjižnica omogoča:
 - dodajanje, iskanje, brisanje, urejanje, naročanje in pregled vseh knjig;
 - dodajanje, brisanje, upravljanje uporabnikov in njihovih pravic;
 - pošiljanje potrditev naročil uporabniku z njegovo QR za dostop do naročila na knjigomatu.
 ```
+**Knjigomat omogoča:**
 ```
-Knjigomat omogoča:
 - pregled vseh knjig na voljo v knjigomatu;
 - vračanje knjig v knjigomat (s QR kodo - vsaka knjiga ima unikatno);
 - prevzem naročenih knjig na izbranem knjigomatu;
