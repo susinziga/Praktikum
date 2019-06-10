@@ -14,13 +14,13 @@ Projekt Knjigomat omogoča izposojo knjig na knjigomatih, ki se nahajajo na več
 **Knjižnica omogoča:**
 ```
 - dodajanje, iskanje, brisanje, urejanje, naročanje in pregled vseh knjig;
-- dodajanje, brisanje, upravljanje uporabnikov in njihovih pravic;
-- pošiljanje potrditev naročil uporabniku z njegovo QR za dostop do naročila na knjigomatu.
+- dodajanje, brisanje, upravljanje uporabnikov in spreminjanje njihovih pravic;
+- pošiljanje potrditev naročil uporabniku na mail, kater vključuje njegovo QR za dostop do naročila na knjigomatu.
 ```
 **Knjigomat omogoča:**
 ```
 - pregled vseh knjig na voljo v knjigomatu;
-- vračanje knjig v knjigomat (s QR kodo - vsaka knjiga ima unikatno);
+- vračanje knjig v knjigomat s QR kodo - vsaka knjiga ima unikatno (vrnemo lahko tudi knjige sposojene v knjižnici);
 - prevzem naročenih knjig na izbranem knjigomatu;
 - prijava uporabnika z uporabo QR kode;
 ```
@@ -56,7 +56,7 @@ c) Uporabnika dodamo v AddUser.bat v datoteki strežnika Wildfly
 
 ## Priprava okolja knjigomat
 1. Razvijalno okolje ATOM z XAMPP / WAMP strežniško rešitvijo
-2. V razavijalnem okolju New project > Desni klik na ustvarjen projekt > GIT > URI "https://github.com/GasperReher/Klient_php.git" > Clone / Pull
+2. V razavijalnem okolju New project > Desni klik na ustvarjen projekt > GIT > URI "https://github.com/GasperReher/Klient_php.git" > Kloniraj / Pull
 3. Več dostopno na: https://github.com/GasperReher/Klient_php
 
 ## Napake in težave
