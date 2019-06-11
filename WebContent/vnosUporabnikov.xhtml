@@ -42,7 +42,7 @@
 							<h:inputText id="priimek" class="form-control" value="#{Zrno.up.priimek}"   requiredMessage="*" /><br/>
 							Geslo:
 							<h:message for="geslo" errorClass="red"/>
-							<h:inputText id="geslo" class="form-control" value="#{Zrno.up.password}"   requiredMessage="*" /><br/>
+							<h:inputSecret id="geslo" class="form-control" value="#{Zrno.up.password}"   requiredMessage="*" /><br/>
 							e-mail:
 							<h:message for="email" errorClass="red"/>
 							<h:inputText id="email" class="form-control" value="#{Zrno.up.email}"   requiredMessage="*" /><br/>
@@ -56,7 +56,44 @@
 					
 				</div>
 			</div>
-		
+			<div class="col-sm-7 text-left"><br/>
+					<div class="well">
+		  			<f:view>
+							<h:form >
+			  					<h:dataTable value="#{Zrno.upo.vrniVse()}" var="upo" border="1" styleClass="table table-bordered" >
+
+									<h:column>
+										<f:facet name="header">ID Uporabnika</f:facet>
+										<h:outputText value="#{upo.id}"></h:outputText>
+									</h:column>
+									<h:column>
+										<f:facet name="header">Ime</f:facet>
+										<h:outputText value="#{upo.ime}" ></h:outputText>
+									</h:column>
+									<h:column>
+										<f:facet name="header">Priimek</f:facet>
+										<h:outputText value="#{upo.priimek}" ></h:outputText>
+									</h:column>
+									<h:column>
+										<f:facet name="header">Email</f:facet>
+										<h:outputText value="#{upo.email}" ></h:outputText>
+									</h:column>
+									<h:column>
+										<f:facet name="header">Password</f:facet>
+										<h:outputText value="#{upo.password}" ></h:outputText>
+									</h:column>
+									<h:column>
+										<f:facet name="header">QrKoda</f:facet>
+										<h:outputText value="#{upo.qrUporabnik}" ></h:outputText>
+									</h:column>									
+									<h:column>									
+									<h:commandButton class="btn btn-success"  actionListener="#{Zrno.izbrisiUporabnika(upo.id)}" value="Brisi"/>	
+									</h:column>							
+							</h:dataTable>
+						</h:form>
+					</f:view>
+				</div>
+			</div>
 			<div class="col-sm-1 sidenav">
 			</div>
 		</div>

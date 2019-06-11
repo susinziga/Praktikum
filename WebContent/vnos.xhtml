@@ -32,13 +32,7 @@
 					
 					<a href="admin.xhtml">Domov</a> <br/><br/>
 						<h:form id="VnosForm" enctype="multipart/form-data">
-							Knjiga:
-							<h:selectOneMenu id="izbranaKnjiga" class="form-control" value="#{Zrno.knjigaInput}" requiredMessage="*" >
-								<p:ajax event="change" listener="#{Zrno.izberiKnjigo}" update="VnosForm" />
-								<f:selectItem itemValue="nov" itemLabel="- Nova knjiga -"/>
-							    <f:selectItems value="#{Zrno.imenaKnjig}" />
-							    <h:message for="izbranaKnjiga" errorClass="red"></h:message>
-							</h:selectOneMenu><br/>
+							
 							Naslov:<br/>
 							<h:message for="naslov" errorClass="red"/>
 							<h:inputText id="naslov" class="form-control" value="#{Zrno.knjigaDao.knjiga.naslov}"   requiredMessage="*" >
@@ -64,33 +58,38 @@
 			</div>
 			<div class="col-sm-6 text-left"><br/>
 				<div class="well">
-	  			<h:dataTable value="#{Zrno.knjigaDao.getKnjige()}" var="book" border="1" styleClass="table table-bordered">
-	  					
-						<h:column>
-							<f:facet name="header">Naslov</f:facet>
-							<h:outputText value="#{book.naslov}" ></h:outputText>
-						</h:column>
-						<h:column>
-							<f:facet name="header">Avtor</f:facet>
-							<h:outputText value="#{book.avtor}" ></h:outputText>
-						</h:column>
-						<h:column>
-							<f:facet name="header">Žanr</f:facet>
-							<h:outputText value="#{book.vrsta}" ></h:outputText>
-						</h:column>
-						<h:column>
-							<f:facet name="header">Naslovnica</f:facet>
-							
-							
-							<h:graphicImage value="data:image/jpeg;base64, #{book.stringSlika()}" style="height:100px"/>
+	  				<f:view>
+					<h:form>
+			  			<h:dataTable value="#{Zrno.knjigaDao.getKnjige()}" var="book" border="1" styleClass="table table-bordered">
+								<h:column>
+									<f:facet name="header">Naslov</f:facet>
+									<h:outputText value="#{book.naslov}" ></h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">Avtor</f:facet>
+									<h:outputText value="#{book.avtor}" ></h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">Žanr</f:facet>
+									<h:outputText value="#{book.vrsta}" ></h:outputText>
+								</h:column>
+								<h:column>
+									<f:facet name="header">Naslovnica</f:facet>
 
-						</h:column>
-						<h:column>
-							<f:facet name="header">QR koda</f:facet>
-							<h:outputText value="#{book.qrKoda}" ></h:outputText>
-						</h:column>
-						
-					</h:dataTable>
+
+									<h:graphicImage value="data:image/jpeg;base64, #{book.stringSlika()}" style="height:100px"/>
+
+								</h:column>
+								<h:column>
+									<f:facet name="header">QR koda</f:facet>
+									<h:outputText value="#{book.qrKoda}" ></h:outputText>
+								</h:column>
+								<h:column>
+								<h:commandButton class="btn btn-success"  actionListener="#{Zrno.izbrisiKnjigo(book.id)}" value="Brisi"/>	
+								</h:column>
+							</h:dataTable>
+						</h:form>
+					</f:view>
 				</div>
 			</div>
 			<div class="col-sm-1 sidenav">
