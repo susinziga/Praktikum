@@ -18,6 +18,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 
 import iskanje.IskanjeDela;
@@ -89,13 +90,13 @@ public class KnjigaRest {
 		}
 		
 		/* POST knjiga iskanje*/
-		@POST
+		@GET
 		@Path("/iskanje/{cat}&{iskanje}")
 		@Produces("application/json")
 		public Response iskanjeKnjige(@PathParam("cat") String cat,@PathParam("iskanje") String isci ) throws IOException, ParseException {
 			List <Knjiga> najdene = new ArrayList<Knjiga>();
 			
-			
+			System.out.println(isci);
 			List <Integer> najdeniID = IskanjeDela.isci(ejb.getKnjige(), isci, cat);
 			
 			for (Integer i: najdeniID) {
@@ -118,10 +119,11 @@ public class KnjigaRest {
 		
 
 		
-		@POST
+		@GET
 		@Path("/iskanje/")
 		@Produces("application/json")
-		public Response iskanjeKnjige() throws IOException, ParseException {
+		public Response iskanjeKnjige(@Context SecurityContext sc) throws IOException, ParseException {
+			if(!(sc.isUserInRole("admin"))) throw new SecurityException("User is unauthorized.");
 			List <Knjiga> najdene = ejb.getKnjige();
 			
 			/*for(int i=0;i<najdene.size();i++) {
