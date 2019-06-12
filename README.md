@@ -31,6 +31,9 @@ Projekt Knjigomat omogoča izposojo knjig na knjigomatih, ki se nahajajo na več
 * [Bootstrap](https://getbootstrap.com/docs/4.3/getting-started/introduction/) - UI knjigomata na mobilni napravi, tablićnem računalniku in vključen pri PHP
 * [JSF](https://www.oracle.com/technetwork/java/javaee/documentation/index-137726.html) - vnos, brisanje, urejanje knjig in uporabnikov v knjižnici
 * [JQuery](https://api.jquery.com/) - Vključeno pri JSF
+* [HTML](https://devdocs.io/html/) - Vključeno pri knjigomatu
+* [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference) - vključeno pri knjigomatu
+* [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference) - Vključeno pri knjigomatu
 * [Java](https://docs.oracle.com/javase/7/docs/api/) - Hranjenje podatkov v ozadju
 * [MySQL](https://dev.mysql.com/doc/) - Podatkovna baza
 * [Wildfly](https://docs.wildfly.org/16/) - Strežnik za JPA - hranjenje podatkov in slik  <i>(uporabljeno pri razvoju!)</i>
@@ -58,7 +61,7 @@ c) Uporabnika dodamo v AddUser.bat v datoteki strežnika Wildfly
 ## Priprava okolja knjigomat
 1. Razvijalno okolje ATOM z XAMPP / WAMP strežniško rešitvijo
 2. V razavijalnem okolju New project > Desni klik na ustvarjen projekt > GIT > URI "https://github.com/GasperReher/Klient_php.git" > Kloniraj / Pull
-3. Več dostopno na: https://github.com/GasperReher/Klient_php
+3. Knjigomat dostopen na: https://github.com/GasperReher/Klient_php in https://github.com/zigalepi/knjigomat_masina
 
 ## Napake in težave
 Zasledite napako ali težavo v pri delovanju? [Prijavite](https://github.com/zigalepi/Praktikum/issues) napako ali težavo na našem GitHub projektu.
