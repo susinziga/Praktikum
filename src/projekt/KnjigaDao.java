@@ -64,53 +64,19 @@ public class KnjigaDao {
 	
 	public void deleteKnjiga(String value) {
 		System.out.println("Brišem "+knjiga+".");
-		int id = findKnjigaId(value);
-		em.createQuery("DELETE FROM Knjiga k WHERE k.id="+id+"").executeUpdate();
 	}
 	
-	public void updateKnjiga(String value) {
-		System.out.println("Spremenjam "+knjiga+".");
-		int id = findKnjigaId(value);
-			em.createQuery("UPDATE Knjiga k SET "
-				+ "k.naslov ='"+knjiga.getNaslov()+"', "
-				+ "k.avtor ='"+knjiga.getAvtor()+"', "
-				+ "k.vrsta ='"+knjiga.getVrsta()+"', "
-				
-				+ " WHERE k.id ='"+id+"'").executeUpdate();
-	}
-	
-	public void izberiKnjigo(String knjigaInput){
-		if(knjigaInput != null) {
-			for(Knjiga book : getKnjige()) {
-		        if(book.getId() == findKnjigaId(knjigaInput)) {
-		        	knjiga = book;
-		        	System.out.println("Profil "+knjiga.getNaslov()+" izbran.");
-		        }
-			}
+	public Knjiga najdId(int id) {
+			
+			return em.find(Knjiga.class, id);
 		}
-		if(knjigaInput.equals("nov")) {
-			knjiga = new Knjiga();
-		}
+	public void posodobi (Knjiga k) {
+		em.merge(k);
 	}
-	
-	public int findKnjigaId(String value) {
+	public void brisi(Knjiga k) {
+		em.remove(em.contains(k) ? k : em.merge(k));
 		
-		int id = 0;
-		for(Knjiga book : getKnjige()) {
-			if(value.equals(book.getNaslov())) {
-				id = book.getId();
-			}
-		}
-		return id;
 	}
-	
-public Knjiga najdId(int id) {
-		
-		return em.find(Knjiga.class, id);
-	}
-public void posodobi (Knjiga k) {
-	em.merge(k);
-}
 
 
 }

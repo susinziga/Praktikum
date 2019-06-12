@@ -45,6 +45,11 @@ public Uporabnik najdi(String qr) {
 	return (Uporabnik) em.createQuery("select a from Uporabnik a where qrUporabnik="+qr).getSingleResult();
 }
 
+public void brisi(Uporabnik k) {
+	em.remove(em.contains(k) ? k : em.merge(k));
+	
+}
+
 @SuppressWarnings("unchecked")
 public String getUporabnikiSt() {
 	List<Uporabnik>upo= em.createQuery("SELECT u FROM Uporabnik u").getResultList();
