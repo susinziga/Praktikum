@@ -319,10 +319,46 @@ public class Zrno implements Serializable  {
 	}
 	/*Brisanje knjigomatov*/
 	public void izbrisiKnjigomat(int id) {
+		KnjigomatKnjiga knji;
+		List<KnjigomatKnjiga>knkn=knjiEjb.vrniVse();
+		for(KnjigomatKnjiga kn:knkn) {
+			if(kn.getMasina().getId()==id) {
+				knji=kn;
+				knjiEjb.brisi(knji);
+			}
+		}
+		
+		Narocilo nar;
+		List<Narocilo>naro=narociloEjb.getNarocila();
+		for(Narocilo kn:naro) {
+			if(kn.getKnjigomat().getId()==id) {
+				nar=kn;
+				narociloEjb.brisi(nar);
+			}
+		}
+		
 		Knjigomat brisi = knjigomat.najd(id);
 		knjigomat.brisi(brisi);
 	}
 	public void izbrisiUporabnika(int id) {
+		
+		Narocilo nar;
+		List<Narocilo>naro=narociloEjb.getNarocila();
+		for(Narocilo kn:naro) {
+			if(kn.getUporabnik().getId()==id) {
+				nar=kn;
+				narociloEjb.brisi(nar);
+			}
+		}
+		
+		Izposoja izp;
+		List<Izposoja>izpo=izposojaEjb.vrniVse();
+		for(Izposoja kn:izpo) {
+			if(kn.getUpo().getId()==id) {
+				izp=kn;
+				izposojaEjb.brisi(izp);
+			}
+		}
 		Uporabnik brisi = upo.najdId(id);
 		upo.brisi(brisi);
 	}
