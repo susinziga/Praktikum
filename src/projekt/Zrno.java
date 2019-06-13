@@ -173,21 +173,21 @@ public class Zrno implements Serializable  {
 		
 		
 		knjigaDao.addBook(b);
-		refreshImenaKnjig();
 	}
-	public void izbrisiKnjigo() {
-		knjigaDao.deleteKnjiga(knjigaInput);
+	public void izbrisiKnjigo(int id) {
+		Knjiga brisi = knjigaDao.najdId(id);
+		knjigaDao.brisi(brisi);
 	}
-	
+	public void spremeniKnjigo(int id) {
+		Knjiga posodobi = knjigaDao.najdId(id);
+		knjigaDao.posodobi(posodobi);
+	}
 	
 	public Uporabnik getUp() {
 		return up;
 	}
 	public void setUp(Uporabnik up) {
 		this.up = up;
-	}
-	public void spremeniKnjigo() {
-		knjigaDao.updateKnjiga(knjigaInput);
 	}
 	/*Iskanje*/
 	public void isciBaza() throws IOException, ParseException {
@@ -288,6 +288,10 @@ public class Zrno implements Serializable  {
 	public void izbrisiKnjigomat(int id) {
 		Knjigomat brisi = knjigomat.najd(id);
 		knjigomat.brisi(brisi);
+	}
+	public void izbrisiUporabnika(int id) {
+		Uporabnik brisi = upo.najdId(id);
+		upo.brisi(brisi);
 	}
 	public UporabnikEJB getUpo() {
 		return upo;
@@ -403,15 +407,6 @@ public class Zrno implements Serializable  {
 		this.knjigaInput = knjigaInput;
 	}
 
-	public void refreshImenaKnjig() {
-		imenaKnjig = new ArrayList<String>();
-		for(Knjiga book : knjigaDao.getKnjige()) {
-			imenaKnjig.add(book.getNaslov());
-		}
-	}
-	public void izberiKnjigo() {
-		knjigaDao.izberiKnjigo(knjigaInput);
-	}
 	public Part getUploadedFile() {
 		return uploadedFile;
 	}

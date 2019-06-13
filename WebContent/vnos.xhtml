@@ -12,7 +12,7 @@
 		<title>Knjižnica</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
 		<style>
-		html,body{height:100%; background-image:linear-gradient(to left bottom, rgb(255, 19, 19), rgb(255, 255, 47))}
+		html,body{height:100%; background-image:linear-gradient(to left bottom, rgb(255, 19, 19), rgb(255, 255, 47));margin: 0;background-repeat: no-repeat;background-attachment: fixed;}
 		.red{color:red}
 		.middleBtn{
 			margin-left: 20px;
@@ -24,8 +24,6 @@
 	<body>
 	  
 		<div class="container-fluid text-center">
-			<div class="col-sm-1 sidenav">
-			</div>
 			<div class="col-sm-4 text-left"><br/>
 				<div class="well">
 					<h1>Dodajanje knjig</h1>
@@ -45,18 +43,16 @@
 							<h:inputText id="vrsta" class="form-control" value="#{Zrno.knjigaDao.knjiga.vrsta}"   requiredMessage="*" /><br/>
 							Naslovnica:
 							<h:message for="naslovnica" errorClass="red"/>
-							<h:inputFile name="naslovnica" class="form-control" value="#{Zrno.uploadedFile}"   requiredMessage="*" /><br/><br/>
+							<h:inputFile name="naslovnica" class="form-control" value="#{Zrno.uploadedFile}" style="height: 100%;"  requiredMessage="*" /><br/><br/>
 							<div style="text-align: center;">
-								<h:commandButton class="btn btn-default" style="display: inline-block;" value="Dodaj" actionListener="#{Zrno.dodajKnjigo}" />
-									<h:commandButton class="btn btn-default middleBtn" style="display: inline-block;" value="Izbrisi" actionListener="#{Zrno.izbrisiKnjigo}" />
-								<h:commandButton class="btn btn-default" style="display: inline-block;" value="Spremeni" actionListener="#{Zrno.spremeniKnjigo}" />
+									<h:commandButton class="btn btn-default" style="display: inline-block;" value="Izbrisi" actionListener="#{Zrno.izbrisiKnjigo}" />
 							</div>		
 							
 						</h:form>
 					
 				</div>
 			</div>
-			<div class="col-sm-6 text-left"><br/>
+			<div class="col-sm-8 text-left"><br/>
 				<div class="well">
 	  				<f:view>
 					<h:form>
@@ -91,8 +87,6 @@
 						</h:form>
 					</f:view>
 				</div>
-			</div>
-			<div class="col-sm-1 sidenav">
 			</div>
 		</div>
 

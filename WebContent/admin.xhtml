@@ -40,10 +40,7 @@
 	<div class="col-sm-6 text-left"><br/>
 				<div class="well">
 				<h:form>
-				<h:commandButton class="btn btn-default" style="display: inline-block;" value="napolni knjigomate" actionListener="#{Zrno.filaj()}" />
-				</h:form>
-				<h:form>
-				<h:commandButton class="btn btn-default" style="display: inline-block;" value="dodaj slike" actionListener="#{Zrno.zazeni()}" />
+				<h:commandButton class="btn btn-default" style="display: inline-block;" value="zazeni" actionListener="#{Zrno.zazeni()}" />
 				</h:form>
 				Število knjig:
 	  			<h:outputText value="#{Zrno.knjigaDao.getKnjigeSt()}" ></h:outputText><br/>
