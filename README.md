@@ -46,16 +46,57 @@ Projekt Knjigomat omogoča izposojo knjig na knjigomatih, ki se nahajajo na več
 ## Nastavitev Virtualnega stroja
 Prenos paketa dostopnega na: https://drive.google.com/file/d/12ucvdLA_tGxi0pue3N29grWOugGdah4G/view?usp=sharing
 
+___
+
+> Nastavitev strežnika Wildfly:
+```
+https://developer.jboss.org/wiki/BasicTutorialToSetUpWildFly
+```
+
+___
+
+> Dodajanje uporabnika v Wildfly:
+```
+https://www.ibm.com/support/knowledgecenter/en/SSMKFH/com.ibm.apmaas.doc/install/jboss_config_agent_prereq_add_management_user.htm
+```
+ali
+```
+1. Poiščemo Bin direktorij v datoteki strežnika WIldfly
+2. Zaženemo skripto za dodajanje uporabnika: Linux./add-user.sh
+                                             Windowsadd-user.bat
+3. Dodamo uporabnika z uporabniškim imenom in geslom z željenimi pravicami
+```
+
+___
+
+> Deployment projekta:
+```
+https://docs.jboss.org/author/display/WFLY10/Application+deployment
+```
+ali
+```
+1. Nastavljen in zagnan strežnik WIldfly
+2. V privzetem brskalniku odpremo lokacijo Localhost:8080 (priveta lokacija za Wildfly ali tisto na katero smo spremenili)
+3. Odpremo administrativno konzolo
+4. Pod Deployments projekt
+5. Zaženemo "bin/standalone.bat"
+6. Projekt je dostopen na: ip/projekt/faces (ip preverimo s cmd > ipconfig)
+```
+![Pogled IP](https://i.imgur.com/rlND3Dh.png)
+___
+
 ### Dostop:
-***VM***
+> VM
 ```
 Geslo: Passw0rd!
 ```
-***Wildfly***
+> Wildfly
 ```
 Uporabnik: user
 Geslo: user
 ```
+
+___
 
 ## Priprava razvojnega okolja knjižnice
 1. Razvijalno okolje Eclipse ali IntelliJ s strežnikom Wildfly(JBOSS)
