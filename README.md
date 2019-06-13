@@ -82,6 +82,7 @@ ali
 5. Zaženemo "bin/standalone.bat"
 6. Projekt je dostopen na: ip/projekt/faces (ip preverimo s cmd > ipconfig)
 ```
+
 ![Pogled IP](https://i.imgur.com/rlND3Dh.png)
 ___
 
