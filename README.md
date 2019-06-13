@@ -44,7 +44,7 @@ Projekt Knjigomat omogoča izposojo knjig na knjigomatih, ki se nahajajo na več
 ![Arhitektura žal ni na voljo](https://i.imgur.com/qkEnle8.png)
 
 ## Nastavitev Virtualnega stroja
-Prenos paketa dostopnega na: https://drive.google.com/file/d/12ucvdLA_tGxi0pue3N29grWOugGdah4G/view?usp=sharing
+Prenos paketa virtualnega stroja dostopno na: https://drive.google.com/file/d/12ucvdLA_tGxi0pue3N29grWOugGdah4G/view?usp=sharing
 
 ___
 
