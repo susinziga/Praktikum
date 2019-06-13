@@ -1,4 +1,3 @@
-
 <html
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -29,18 +28,21 @@
 	<div class="col-sm-4 text-left"><br/>
 				<div class="well">
 					<h1>Admin page</h1>
-					
+
 					<a href="vnos.xhtml">Knjige</a><br/>
 					<a href="vnosKnjigomatov.xhtml">Knjigomati</a><br/>
 					<a href="vnosUporabnikov.xhtml">Uporabniki</a><br/>
-						
-					
+
+
 				</div>
 			</div>
 	<div class="col-sm-6 text-left"><br/>
 				<div class="well">
 				<h:form>
-				<h:commandButton class="btn btn-default" style="display: inline-block;" value="zazeni" actionListener="#{Zrno.zazeni()}" />
+				<h:commandButton class="btn btn-default" style="display: inline-block;" value="napolni knjigomate" actionListener="#{Zrno.filaj()}" />
+				</h:form>
+				<h:form>
+				<h:commandButton class="btn btn-default" style="display: inline-block;" value="dodaj slike" actionListener="#{Zrno.zazeni()}" />
 				</h:form>
 				Število knjig:
 	  			<h:outputText value="#{Zrno.knjigaDao.getKnjigeSt()}" ></h:outputText><br/>

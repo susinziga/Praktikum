@@ -22,7 +22,9 @@
     <url-pattern>/faces/vnosKnjigomatov.xhtml</url-pattern>
     <url-pattern>/faces/vnosUporabnikov.xhtml</url-pattern>
   </web-resource-collection>
- 
+ 	 <auth-constraint>
+    <role-name>admin</role-name>
+  </auth-constraint>
   </security-constraint>
   <login-config>
     <auth-method>FORM</auth-method>

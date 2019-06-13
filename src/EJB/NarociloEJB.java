@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import projekt.Knjiga;
 import projekt.Knjigomat;
 import projekt.Narocilo;
 
@@ -36,4 +37,9 @@ public Narocilo najd(int id) {
 		
 		return em.find(Narocilo.class, id);
 	}
+
+public void brisi(Narocilo k) {
+	em.remove(em.contains(k) ? k : em.merge(k));
+	
+}
 }

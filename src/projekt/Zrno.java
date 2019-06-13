@@ -25,8 +25,10 @@ import javax.servlet.http.Part;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+import EJB.IzposojaEJB;
 import EJB.KnjigomatEJB;
 import EJB.KnjigomatKnjigaEJB;
+import EJB.NarociloEJB;
 import EJB.UporabnikEJB;
 import iskanje.IskanjeDela;
 import iskanje.KnjigomatKnjiga;
@@ -47,8 +49,11 @@ public class Zrno implements Serializable  {
 	private Knjigomat kn= new Knjigomat();
 	private Uporabnik up= new Uporabnik();
 	
+	@EJB
+	IzposojaEJB izposojaEjb;
 	
-	
+	@EJB
+	NarociloEJB narociloEjb;
 	
 	@EJB
 	KnjigaDao knjigaDao;
@@ -175,6 +180,34 @@ public class Zrno implements Serializable  {
 		knjigaDao.addBook(b);
 	}
 	public void izbrisiKnjigo(int id) {
+		
+		KnjigomatKnjiga knji;
+		List<KnjigomatKnjiga>knkn=knjiEjb.vrniVse();
+		for(KnjigomatKnjiga kn:knkn) {
+			if(kn.getKnjiga().getId()==id) {
+				knji=kn;
+				knjiEjb.brisi(knji);
+			}
+		}
+		
+		Narocilo nar;
+		List<Narocilo>naro=narociloEjb.getNarocila();
+		for(Narocilo kn:naro) {
+			if(kn.getKnjiga().getId()==id) {
+				nar=kn;
+				narociloEjb.brisi(nar);
+			}
+		}
+		
+		Izposoja izp;
+		List<Izposoja>izpo=izposojaEjb.vrniVse();
+		for(Izposoja kn:izpo) {
+			if(kn.getKnjiga().getId()==id) {
+				izp=kn;
+				izposojaEjb.brisi(izp);
+			}
+		}
+		
 		Knjiga brisi = knjigaDao.najdId(id);
 		knjigaDao.brisi(brisi);
 	}

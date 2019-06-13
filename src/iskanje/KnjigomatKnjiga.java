@@ -1,5 +1,6 @@
 package iskanje;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,7 +46,9 @@ public int getId() {
 	public void setId(int id) {
 		this.id = id;
 	}
-	@OneToOne
+	
+	
+@OneToOne
 public Knjiga getKnjiga() {
 	return knjiga;
 }

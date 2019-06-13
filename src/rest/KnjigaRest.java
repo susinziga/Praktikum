@@ -123,7 +123,7 @@ public class KnjigaRest {
 		@Path("/iskanje/")
 		@Produces("application/json")
 		public Response iskanjeKnjige(@Context SecurityContext sc) throws IOException, ParseException {
-			if(!(sc.isUserInRole("admin"))) throw new SecurityException("User is unauthorized.");
+			
 			List <Knjiga> najdene = ejb.getKnjige();
 			
 			/*for(int i=0;i<najdene.size();i++) {

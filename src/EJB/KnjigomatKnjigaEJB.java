@@ -51,6 +51,11 @@ public class KnjigomatKnjigaEJB {
 		em.merge(k);
 		
 	}
+	
+	public void brisi(KnjigomatKnjiga k) {
+		em.remove(em.contains(k) ? k : em.merge(k));
+		
+	}
 
 
 

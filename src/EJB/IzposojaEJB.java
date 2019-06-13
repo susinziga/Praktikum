@@ -33,4 +33,9 @@ public void update(Izposoja i) {
 	em.merge(i);
 	
 }
+
+public void brisi(Izposoja k) {
+	em.remove(em.contains(k) ? k : em.merge(k));
+	
+}
 }
