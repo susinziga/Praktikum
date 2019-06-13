@@ -4,6 +4,7 @@ Projekt Knjigomat omogoča izposojo knjig na knjigomatih, ki se nahajajo na več
 ## Kazalo
 - [Kaj omogoča](#kaj-omogoča)
 - [Tehnološki sklad](#tehnološki-sklad)
+- [Nastavitev virtualnega stroja](#nastavitev-virtualnega-stroja)
 - [Priprava razvojnega okolja knjižnice](#priprava-razvojnega-okolja-knjižnice)
 - [Priprava okolja knjigomat](#priprava-okolja-knjigomat)
 - [Avtorji](#avtorji)
@@ -41,6 +42,20 @@ Projekt Knjigomat omogoča izposojo knjig na knjigomatih, ki se nahajajo na več
 
 ### Arhitektura:
 ![Arhitektura žal ni na voljo](https://i.imgur.com/qkEnle8.png)
+
+## Nastavitev Virtualnega stroja
+Prenos paketa dostopnega na: https://drive.google.com/file/d/12ucvdLA_tGxi0pue3N29grWOugGdah4G/view?usp=sharing
+
+### Dostop:
+***VM***
+```
+Geslo: Passw0rd!
+```
+***Wildfly***
+```
+Uporabnik: user
+Geslo: user
+```
 
 ## Priprava razvojnega okolja knjižnice
 1. Razvijalno okolje Eclipse ali IntelliJ s strežnikom Wildfly(JBOSS)
