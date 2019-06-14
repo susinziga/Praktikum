@@ -107,21 +107,22 @@ ___
 2. V razvojnem okolju Datoteka > Uvozi > GIT > URI "https://github.com/zigalepi/Praktikum.git" > Kloniraj
 3. V Eclipsu uporaba git bash terminala:  
 a) Nastavitve > Orodja > Terminal   
-b) Shell Path, navedemo pot do bash.exe datoteke, ki jo najdemo v */Git/bin/bash.exe
+b) Shell Path, navedemo pot do bash.exe datoteke, ki jo najdemo v `*/Git/bin/bash.exe`
 4.Uporabimo lahko tudi "Ekipa"
 a) Desni klik na projekt > Ekipa > Git
 5. Konfiguriranje strežnika Wildfly:
 a) Prenos paketa strežnika Wildfly  
 b) V razvijalnem okolju odpremo zavihek Strežniki > Novo > Izberemo prenešeno datoteko in poimenujemo strežnik > Dodaj projekt > Zaženi 
-c) Uporabnika dodamo v AddUser.bat v datoteki strežnika Wildfly   
-6. Lokalna podatkovna baza v MySQL, v Persistence.xml poimenovana "PraktikumDS"
-7. Aplikacija je dostopna na Localhost:8080
+c) Uporabnika dodamo v `AddUser.bat` datoteki strežnika Wildfly   
+6. Lokalna podatkovna baza v MySQL, v `Persistence.xml` poimenovana `PraktikumDS`
+7. Aplikacija je dostopna na `Localhost:8080`
 8. Za posodobitev sprememb ponovno zaženemo kot aplikacijo na strežniku
 
 ## Priprava okolja knjigomat
 1. Razvijalno okolje ATOM z XAMPP / WAMP strežniško rešitvijo
 2. V razavijalnem okolju New project > Desni klik na ustvarjen projekt > GIT > URI "https://github.com/GasperReher/Klient_php.git" > Kloniraj / Pull
-3. Knjigomat dostopen na: https://github.com/GasperReher/Klient_php in https://github.com/zigalepi/knjigomat_masina
+3. Knjigomat dostopen na: https://github.com/zigalepi/knjigomat_masina
+4. Klient dostopen na: https://github.com/GasperReher/Klient_php.git
 
 ## Napake in težave
 Zasledite napako ali težavo v pri delovanju? [Prijavite](https://github.com/zigalepi/Praktikum/issues) napako ali težavo na našem GitHub projektu.
