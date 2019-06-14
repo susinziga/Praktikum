@@ -4,7 +4,7 @@ Projekt Knjigomat omogoča izposojo knjig na knjigomatih, ki se nahajajo na več
 ## Kazalo
 - [Kaj omogoča](#kaj-omogoča)
 - [Tehnološki sklad](#tehnološki-sklad)
-- [Nastavitev virtualnega stroja](#nastavitev-virtualnega-stroja)
+- [Nastavitev virtualnega stroja](#nastavitev-virtualnega-stroja-in-uporaba-brez-njega)
 - [Priprava razvojnega okolja knjižnice](#priprava-razvojnega-okolja-knjižnice)
 - [Priprava okolja knjigomat](#priprava-okolja-knjigomat)
 - [Avtorji](#avtorji)
@@ -43,23 +43,26 @@ Projekt Knjigomat omogoča izposojo knjig na knjigomatih, ki se nahajajo na več
 ### Arhitektura:
 ![Arhitektura žal ni na voljo](https://i.imgur.com/qkEnle8.png)
 
-## Nastavitev Virtualnega stroja
+## Nastavitev Virtualnega stroja in uporaba brez njega
+Ne glede na naš način uporabe je potrebno slediti vsem naslednjim navodilom glede nastavitve strežnikov in razvojnih okolj!
+
 Prenos paketa virtualnega stroja dostopno na: https://drive.google.com/file/d/12ucvdLA_tGxi0pue3N29grWOugGdah4G/view?usp=sharing
 
 ___
 
 > Nastavitev strežnika Wildfly:
-```
-https://developer.jboss.org/wiki/BasicTutorialToSetUpWildFly
-```
+
+[Vodnik za nastavitve](https://developer.jboss.org/wiki/BasicTutorialToSetUpWildFly)
 
 ___
 
 > Dodajanje uporabnika v Wildfly:
-```
-https://www.ibm.com/support/knowledgecenter/en/SSMKFH/com.ibm.apmaas.doc/install/jboss_config_agent_prereq_add_management_user.htm
-```
+
+[Vodilo za dodajanje uporabnika](https://www.ibm.com/support/knowledgecenter/en/SSMKFH/com.ibm.apmaas.doc/install/jboss_config_agent_prereq_add_management_user.htm
+)
+
 ali
+
 ```
 1. Poiščemo Bin direktorij v datoteki strežnika WIldfly
 2. Zaženemo skripto za dodajanje uporabnika: Linux./add-user.sh
@@ -70,9 +73,9 @@ ali
 ___
 
 > Deployment projekta:
-```
-https://docs.jboss.org/author/display/WFLY10/Application+deployment
-```
+
+[Vodilo za deployment projekta](https://docs.jboss.org/author/display/WFLY10/Application+deployment)
+
 ali
 ```
 1. Nastavljen in zagnan strežnik WIldfly
